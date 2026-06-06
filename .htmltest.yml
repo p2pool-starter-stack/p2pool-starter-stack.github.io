@@ -1,0 +1,17 @@
+# htmltest — link / anchor / image checker for the built site.
+# https://github.com/wjdp/htmltest
+#
+# We check INTERNAL links, in-page anchors (#projects, #roadmap, …) and image
+# sources only. External links (github.com, getmonero.org, …) are intentionally
+# skipped so CI stays deterministic and never fails on a third-party outage or
+# rate limit — run `htmltest` with CheckExternal locally if you want to audit them.
+
+DirectoryPath: "public"
+CheckExternal: false
+CheckInternal: true
+CheckInternalHash: true        # verify nav anchors resolve to a real id
+CheckImages: true
+CheckScripts: true
+CheckLinks: true
+IgnoreDirectoryMissingTrailingSlash: true
+EnforceHTTPS: false

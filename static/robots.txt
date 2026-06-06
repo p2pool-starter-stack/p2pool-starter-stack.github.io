@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://p2pool-starter-stack.github.io/sitemap.xml

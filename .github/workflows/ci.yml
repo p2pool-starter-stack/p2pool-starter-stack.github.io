@@ -1,0 +1,53 @@
+name: CI
+
+# Validates every push and pull request: a strict Hugo build (warnings fail the
+# build) plus an internal link / image / anchor check. Deterministic — no external
+# network checks, so it never goes red on a third-party hiccup.
+
+on:
+  push:
+    branches-ignore: [main]   # main is covered by deploy.yml's build step
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: "0.162.1"
+      HTMLTEST_VERSION: "0.17.0"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Hugo (extended)
+        run: |
+          wget -O "${{ runner.temp }}/hugo.deb" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "${{ runner.temp }}/hugo.deb"
+
+      - name: Build (strict — warnings are errors)
+        env:
+          HUGO_ENVIRONMENT: production
+          TZ: UTC
+        run: hugo --gc --minify --panicOnWarning --baseURL "http://localhost/"
+
+      - name: Install htmltest (pinned GitHub release)
+        run: |
+          curl -fsSL \
+            "https://github.com/wjdp/htmltest/releases/download/v${HTMLTEST_VERSION}/htmltest_${HTMLTEST_VERSION}_linux_amd64.tar.gz" \
+            -o "${{ runner.temp }}/htmltest.tar.gz"
+          tar -xzf "${{ runner.temp }}/htmltest.tar.gz" -C "${{ runner.temp }}" htmltest
+          install "${{ runner.temp }}/htmltest" /usr/local/bin/htmltest
+
+      - name: Check internal links, anchors & images
+        run: htmltest

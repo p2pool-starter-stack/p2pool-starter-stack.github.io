@@ -1,0 +1,213 @@
+{{ define "main" }}
+{{ $c := hugo.Data.content }}
+
+{{/* ───────────────────────── HERO ───────────────────────── */}}
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="grid-lines"></div>
+    <div class="glow"></div>
+    <div class="headframe">{{ partial "icon.html" "pithead" }}</div>
+  </div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow rise"><span class="dot"></span>{{ $c.hero.eyebrow }}</p>
+    <h1 class="hero-title rise">{{ $c.hero.title_lead }} <span class="accent glow-text">{{ $c.hero.title_accent }}</span> {{ $c.hero.title_tail }}</h1>
+    <p class="hero-sub rise">{{ $c.hero.sub | safeHTML }}</p>
+
+    <div class="terminal rise" aria-label="One-command setup">
+      <div class="term-bar"><span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span><span class="term-title mono">{{ $c.hero.command.title }}</span></div>
+      <pre class="term-body mono"><code>{{- range $c.hero.command.lines -}}
+{{ if .p }}<span class="term-prompt">$</span> <span class="term-cmd">{{ .text }}</span>{{ else }}<span class="term-ok">{{ .text }}</span>{{ end }}
+{{ end -}}
+<span class="cursor">█</span></code></pre>
+    </div>
+
+    <div class="hero-cta rise">
+      <a class="btn btn-primary" href="{{ $c.hero.cta_primary.href }}" target="_blank" rel="noopener">{{ $c.hero.cta_primary.label }} <span aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost" href="{{ $c.hero.cta_secondary.href }}" target="_blank" rel="noopener">{{ $c.hero.cta_secondary.label }}</a>
+    </div>
+    <p class="hero-meta mono rise">{{ $c.hero.meta }}</p>
+  </div>
+</section>
+
+{{/* ───────────────────────── STATS ───────────────────────── */}}
+<section class="stats-band">
+  <div class="wrap stats-grid">
+    {{ range $c.stats }}
+    <div class="stat reveal">
+      <span class="stat-val mono">{{ .value }}</span>
+      <span class="stat-label">{{ .label }}</span>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+{{/* ───────────────────────── FLOW ───────────────────────── */}}
+<section class="section" id="flow">
+  <div class="wrap">
+    <p class="eyebrow mono reveal">{{ $c.flow.eyebrow }}</p>
+    <h2 class="section-title reveal">{{ $c.flow.title }}</h2>
+    <p class="section-sub reveal">{{ $c.flow.sub }}</p>
+
+    <div class="flow reveal">
+      <div class="flow-node node-miners">
+        <span class="flow-mark ember">{{ partial "icon.html" "rigforge" }}</span>
+        <span class="flow-kicker mono">{{ $c.flow.nodes.miners.kicker }}</span>
+        <span class="flow-title">{{ $c.flow.nodes.miners.title }}</span>
+        <span class="flow-note">{{ $c.flow.nodes.miners.note }}</span>
+      </div>
+      <div class="flow-arrow"><span class="flow-arrow-label mono">hashrate · :3333</span></div>
+      <div class="flow-node node-orch is-hub">
+        <span class="flow-mark orange">{{ partial "icon.html" "pithead" }}</span>
+        <span class="flow-kicker mono">{{ $c.flow.nodes.orch.kicker }}</span>
+        <span class="flow-title">{{ $c.flow.nodes.orch.title }}</span>
+        <span class="flow-note">{{ $c.flow.nodes.orch.note }}</span>
+        <span class="flow-branch mono">↘ {{ $c.flow.side.kicker }} · {{ $c.flow.side.note }}</span>
+      </div>
+      <div class="flow-arrow"><span class="flow-arrow-label mono">merge-mine · over Tor</span></div>
+      <div class="flow-node node-chains">
+        <span class="flow-mark"><span class="chain-pair">{{ partial "icon.html" "monero" }}{{ partial "icon.html" "tari" }}</span></span>
+        <span class="flow-kicker mono">{{ $c.flow.nodes.chains.kicker }}</span>
+        <span class="flow-title">{{ $c.flow.nodes.chains.title }}</span>
+        <span class="flow-note">{{ $c.flow.nodes.chains.note }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ───────────────────────── PROJECTS ───────────────────────── */}}
+<section class="section section-alt" id="projects">
+  <div class="wrap">
+    <p class="eyebrow mono reveal">{{ $c.projects.eyebrow }}</p>
+    <h2 class="section-title reveal">{{ $c.projects.title }}</h2>
+    <p class="section-sub reveal">{{ $c.projects.sub }}</p>
+
+    {{ range $c.projects.items }}
+    <article class="project reveal accent-{{ .accent }}{{ if .featured }} project-featured{{ end }}" id="{{ .id }}">
+      <div class="project-head">
+        <span class="project-mark">{{ partial "icon.html" .mark }}</span>
+        <div class="project-id">
+          <h3 class="project-name">{{ .name }}</h3>
+          <span class="project-role mono">{{ .role }}</span>
+        </div>
+        {{ if .featured }}<span class="project-flag mono">★ the star</span>{{ end }}
+      </div>
+      <p class="project-tagline">{{ .tagline }}</p>
+      <p class="project-blurb">{{ .blurb }}</p>
+
+      <ul class="feat-grid">
+        {{ range .features }}
+        <li class="feat">
+          <span class="feat-ico">{{ partial "icon.html" .icon }}</span>
+          <span class="feat-text"><strong>{{ .title }}</strong> {{ .text }}</span>
+        </li>
+        {{ end }}
+      </ul>
+
+      {{ if .image }}
+      <figure class="project-shot">
+        <img src="{{ .image | relURL }}" alt="{{ .image_alt }}" loading="lazy" decoding="async">
+        <figcaption class="mono">live dashboard · {{ .name }}</figcaption>
+      </figure>
+      {{ end }}
+
+      <div class="project-links">
+        {{ range .links }}
+        <a class="btn {{ if .primary }}btn-primary{{ else }}btn-ghost{{ end }} btn-sm" href="{{ .href }}" target="_blank" rel="noopener">{{ .label }} <span aria-hidden="true">↗</span></a>
+        {{ end }}
+      </div>
+    </article>
+    {{ end }}
+  </div>
+</section>
+
+{{/* ───────────────────────── ROADMAP ───────────────────────── */}}
+<section class="section" id="roadmap">
+  <div class="wrap">
+    <p class="eyebrow mono reveal">{{ $c.roadmap.eyebrow }}</p>
+    <h2 class="section-title reveal">{{ $c.roadmap.title }}</h2>
+    <p class="section-sub reveal">{{ $c.roadmap.sub }}</p>
+
+    <p class="waves-label mono reveal">{{ $c.roadmap.waves_label }}</p>
+    <div class="waves">
+      <span class="waves-rail" aria-hidden="true"></span>
+      {{ range $c.roadmap.waves }}
+      <div class="wave reveal">
+        <div class="wave-node"><span class="mono">{{ .n }}</span></div>
+        <div class="wave-body">
+          <div class="wave-head">
+            <h3 class="wave-name">{{ .name }}</h3>
+            <span class="status-pill mono">{{ .status }}</span>
+          </div>
+          <p class="wave-text">{{ .text }}</p>
+        </div>
+      </div>
+      {{ end }}
+      <div class="wave wave-ship reveal">
+        <div class="wave-node ship">{{ partial "icon.html" "hardrock" }}</div>
+        <div class="wave-body">
+          <div class="wave-head"><h3 class="wave-name">{{ $c.roadmap.ship.title }}</h3><span class="status-pill ship-pill mono">SHIP</span></div>
+          <p class="wave-text">{{ $c.roadmap.ship.text }}</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="waves-label mono reveal beyond-label">{{ $c.roadmap.beyond_label }}</p>
+    <div class="cards-2 horizon">
+      {{ range $c.roadmap.horizon }}
+      <article class="card horizon-card reveal accent-{{ .accent }}">
+        <div class="horizon-head">
+          <span class="horizon-mark">{{ partial "icon.html" .mark }}</span>
+          <span class="status-pill mono">{{ .tag }}</span>
+        </div>
+        <h3 class="card-title">{{ .name }}</h3>
+        <p class="card-text">{{ .text }}</p>
+      </article>
+      {{ end }}
+    </div>
+
+    {{ with $c.roadmap.donate }}
+    <div class="donate-band reveal">
+      <p class="eyebrow mono">{{ .eyebrow }}</p>
+      <h3 class="donate-title">{{ .title }}</h3>
+      <p class="donate-text">{{ .text }}</p>
+      <button class="copy-btn copy-btn-lg" type="button" data-copy="{{ $.Site.Params.donateXMR }}" aria-label="Copy Pithead's Monero donation address">
+        <code class="mono donate-addr-full">{{ $.Site.Params.donateXMR }}</code>
+        <span class="copy-state">copy</span>
+      </button>
+      <p class="donate-note mono">{{ .note }}</p>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+{{/* ───────────────────────── ETHOS ───────────────────────── */}}
+<section class="section section-alt" id="ethos">
+  <div class="wrap">
+    <p class="eyebrow mono reveal">{{ $c.ethos.eyebrow }}</p>
+    <h2 class="section-title reveal">{{ $c.ethos.title }}</h2>
+    <div class="cards-3 ethos-grid">
+      {{ range $i, $e := $c.ethos.items }}
+      <article class="card ethos-card reveal">
+        <span class="ethos-num mono">{{ printf "%02d" (add $i 1) }}</span>
+        <h3 class="card-title">{{ $e.title }}</h3>
+        <p class="card-text">{{ $e.text }}</p>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* ───────────────────────── CTA ───────────────────────── */}}
+<section class="section cta-section">
+  <div class="cta-bg" aria-hidden="true"><div class="glow"></div></div>
+  <div class="wrap cta-inner reveal">
+    <p class="eyebrow mono">{{ $c.cta.eyebrow }}</p>
+    <h2 class="cta-title">{{ $c.cta.title }}</h2>
+    <p class="cta-sub">{{ $c.cta.sub }}</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="{{ $c.cta.primary.href }}" target="_blank" rel="noopener">{{ $c.cta.primary.label }} <span aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost" href="{{ $c.cta.secondary.href }}" target="_blank" rel="noopener">{{ $c.cta.secondary.label }}</a>
+    </div>
+  </div>
+</section>
+{{ end }}

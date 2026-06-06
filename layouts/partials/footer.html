@@ -1,0 +1,46 @@
+{{- $donate := .Site.Params.donateXMR -}}
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="{{ "/" | relURL }}" aria-label="Hardrock — home">
+        <span class="brand-mark">{{ partial "icon.html" "hardrock" }}</span>
+        <span class="brand-word">HARD<span class="brand-accent">ROCK</span></span>
+      </a>
+      <p class="footer-tag">Privacy is the default, not a setting.<br>Built in the open, on hardware you own.</p>
+      <p class="footer-badges">
+        <span class="badge">MIT</span>
+        <span class="badge">no trackers</span>
+        <span class="badge">zero third-party requests</span>
+      </p>
+    </div>
+
+    <nav class="footer-col" aria-label="Projects">
+      <h3>Projects</h3>
+      <a href="https://github.com/p2pool-starter-stack/pithead" target="_blank" rel="noopener">Pithead — orchestrator</a>
+      <a href="https://github.com/p2pool-starter-stack/rigforge" target="_blank" rel="noopener">RigForge — miners</a>
+      <a href="https://github.com/p2pool-starter-stack/pithead/tree/main/docs" target="_blank" rel="noopener">Documentation</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Project">
+      <h3>The collective</h3>
+      <a href="{{ .Site.Params.orgURL }}" target="_blank" rel="noopener">GitHub organization</a>
+      <a href="https://www.getmonero.org/" target="_blank" rel="noopener">Monero</a>
+      <a href="https://www.tari.com/" target="_blank" rel="noopener">Tari</a>
+    </nav>
+
+    {{- with $donate }}
+    <div class="footer-col footer-donate">
+      <h3>Donate <span class="mono">XMR</span></h3>
+      <p class="footer-note">If a stack saved you time, support keeps it sharp.</p>
+      <button class="copy-btn" type="button" data-copy="{{ . }}" aria-label="Copy Monero donation address">
+        <code class="mono donate-addr">{{ substr . 0 10 }}…{{ substr . -8 8 }}</code>
+        <span class="copy-state">copy</span>
+      </button>
+    </div>
+    {{- end }}
+  </div>
+  <div class="wrap footer-base">
+    <span class="mono">© {{ now.Year }} Hardrock</span>
+    <span class="mono dim">an orchestrator, and the miners that feed it</span>
+  </div>
+</footer>

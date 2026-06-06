@@ -1,0 +1,150 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Single source of truth for all landing-page copy.
+# Rendered by layouts/index.html. Edit text here, not in the templates.
+# ─────────────────────────────────────────────────────────────────────────────
+
+hero:
+  eyebrow: "Private Monero mining · self-hosted"
+  title_lead: "Run the whole"
+  title_accent: "operation"
+  title_tail: "yourself."
+  sub: >-
+    Hardrock builds open-source stacks for private, optimized
+    <strong>Monero&nbsp;+&nbsp;Tari</strong> mining on hardware you own — an
+    <strong>orchestrator</strong> and the <strong>miners</strong> that feed it.
+    No custodians. No exposed home IP. No hand-tuning.
+  command:
+    title: "you@home: ~/pithead"
+    lines:
+      - { p: true,  text: "git clone https://github.com/p2pool-starter-stack/pithead" }
+      - { p: true,  text: "cd pithead && ./pithead setup" }
+      - { p: false, text: "✓ Tor provisioned · kernel tuned · stack live over HTTPS" }
+  cta_primary:   { label: "Get Pithead", href: "https://github.com/p2pool-starter-stack/pithead" }
+  cta_secondary: { label: "View on GitHub", href: "https://github.com/p2pool-starter-stack" }
+  meta: "MIT-licensed · built in the open · zero third-party requests"
+
+# Mono stat band under the hero.
+stats:
+  - { value: "9",  label: "services, one compose file" }
+  - { value: "2",  label: "chains, merge-mined" }
+  - { value: "1",  label: "command to set up" }
+  - { value: ":3333", label: "one endpoint for every rig" }
+  - { value: "0",  label: "ports forwarded · IP exposed" }
+
+# "How they fit together" flow.
+flow:
+  eyebrow: "// how it fits together"
+  title: "An orchestrator, and the miners that feed it."
+  sub: >-
+    Point as many RigForge miners as you like at a single Pithead. The stack handles
+    the nodes, privacy, payouts, and optimization — the miners just hash.
+  nodes:
+    miners:   { kicker: "RigForge", title: "Miners", note: "many machines · just hash" }
+    orch:     { kicker: "Pithead", title: "Orchestrator", note: "nodes · privacy · payouts · :3333" }
+    chains:   { kicker: "Monero + Tari", title: "Merge-mined", note: "over Tor" }
+  side: { kicker: "XMRvsBeast", title: "Bonus rounds", note: "algorithmic hashrate split" }
+
+# The projects. Pithead is the star (featured: true).
+projects:
+  eyebrow: "// the projects"
+  title: "Two open-source projects. One private operation."
+  sub: "Everything is MIT-licensed and built in the open."
+  items:
+    - id: "pithead"
+      featured: true
+      mark: "pithead"
+      accent: "orange"
+      name: "Pithead"
+      role: "the orchestrator"
+      tagline: "Private Monero + Tari merge mining, the whole stack, in one command."
+      blurb: >-
+        A professional-grade, containerized stack that runs a private Monero full node,
+        P2Pool, Tari merge mining, a single mining endpoint, and a live dashboard —
+        all behind Tor, in one command.
+      image: "img/dashboard.png"
+      image_alt: "The Pithead dashboard — live hashrate, sync progress, and per-worker stats"
+      features:
+        - { icon: "onion",  title: "Private by default", text: "Tor hidden services for Monero, Tari, and P2Pool. No port forwarding, no exposed IP." }
+        - { icon: "pick",   title: "Monero + Tari, merge-mined", text: "Earn on both chains at once through P2Pool — with zero extra effort." }
+        - { icon: "brain",  title: "Algorithmic yield optimization", text: "Continuously splits your hashrate between P2Pool and XMRvsBeast bonus rounds to maximize return." }
+        - { icon: "plug",   title: "One endpoint for every rig", text: "All your miners point at a single address; the stack routes hashrate upstream." }
+        - { icon: "chart",  title: "A dashboard that tells you things", text: "Live hashrate, sync progress, PPLNS window, and per-worker stats — over HTTPS on your LAN." }
+        - { icon: "shield", title: "Hardened out of the box", text: "Least-privilege containers, SHA256-verified pinned binaries, tightly scoped Docker-socket proxies." }
+      links:
+        - { label: "GitHub", href: "https://github.com/p2pool-starter-stack/pithead", primary: true }
+        - { label: "Docs", href: "https://github.com/p2pool-starter-stack/pithead/tree/main/docs" }
+
+    - id: "rigforge"
+      featured: false
+      mark: "rigforge"
+      accent: "ember"
+      name: "RigForge"
+      role: "the miners"
+      tagline: "Provision a hardware-tuned XMRig miner in one command."
+      blurb: >-
+        Turn any machine into a tuned mining worker. RigForge compiles stock XMRig from
+        source, applies CPU- and kernel-level tuning for maximum RandomX hashrate, runs it
+        as a managed service — then points it at your stack, or any RandomX pool.
+      features:
+        - { icon: "bolt",   title: "One command, bare metal to mining", text: "Installs the toolchain, builds upstream XMRig, and starts hashing." }
+        - { icon: "cpu",    title: "Hardware-aware", text: "Detects your CPU (EPYC, Ryzen X3D, …) and applies a matching performance profile." }
+        - { icon: "gear",   title: "Kernel-tuned", text: "HugePages (1 GB / 2 MB), MSR access, and NUMA binding — done for you." }
+        - { icon: "plug",   title: "Plug-and-play", text: "Connects to Pithead, or any RandomX Stratum pool. Workers don't need Tor." }
+      links:
+        - { label: "GitHub", href: "https://github.com/p2pool-starter-stack/rigforge", primary: true }
+
+# High-level roadmap, sequenced from the repos' open issues (pithead #167 v1.0 waves,
+# rigforge tracks, and the v1.1 / v2 milestones). No dates — waves and versions only.
+roadmap:
+  eyebrow: "// the roadmap"
+  title: "The road to v1.0 — and beyond."
+  sub: >-
+    Built in the open, issue by issue — no vaporware, no roadmap-for-sale. Six waves to launch,
+    then the appliance era: flash a drive, boot, and mine.
+  waves_label: "v1.0 · the launch, in six waves"
+  waves:
+    - { n: "01", name: "Correctness & data-safety", status: "In progress",
+        text: "Kill the silent-failure bugs that burn early adopters — no surprise re-syncs, no no-op applies, no stale config, no vanished share history." }
+    - { n: "02", name: "Privacy & security", status: "In progress",
+        text: "No clearnet egress outside Tor. Close every DNS and stats leak, fail closed on empty tokens, shut the SSRF door, cap the blast radius." }
+    - { n: "03", name: "The dashboard", status: "In progress",
+        text: "The thing people screenshot — routed hashrate everywhere, an honest tier + explicit VIP status, and a redesigned operator-first layout." }
+    - { n: "04", name: "Operator alerting", status: "Up next",
+        text: "Know the second a node or worker drops — Telegram notifications plus an external dead-man's switch for power-loss and host-down." }
+    - { n: "05", name: "CI & test hardening", status: "Up next",
+        text: "Every container image built in CI, every script linted, backup/restore and upgrade paths under an expanded test suite." }
+    - { n: "06", name: "Release gate & launch", status: "The finish line",
+        text: "A full end-to-end test on a real Ubuntu server, a GHCR release pipeline, and refreshed launch assets — then ship." }
+  ship:
+    title: "v1.0 — the whole operation, shipped."
+    text: "End-to-end tested on real hardware, packaged, versioned, and released in the open."
+  beyond_label: "beyond v1.0"
+  horizon:
+    - { tag: "v1.1", mark: "gear", accent: "purple", name: "Control & insight",
+        text: "Change any setting from the dashboard, one-click upgrades, an interactive Telegram bot, and a pool cadence & luck panel — plus privacy on by default, routing the P2Pool sidechain and the XvB upstream through Tor." }
+    - { tag: "v2", mark: "spark", accent: "ember", name: "The appliance era",
+        text: "Flash a USB, boot, and mine. Self-provisioning appliance images for the stack host and RigForge miners, an immutable Podman/Quadlet runtime, and standalone Monero & Tari node-starter stacks." }
+  donate:
+    eyebrow: "// fuel the roadmap"
+    title: "Built in the open. Funded by the people who run it."
+    text: "Every wave above ships by hand, issue by issue — no VC, no token, no premine. If a Hardrock stack saved you time, fuel the next wave."
+    note: "Monero, naturally — the same address Pithead ships with."
+
+# "How we build" — the ethos.
+ethos:
+  eyebrow: "// how we build"
+  title: "The XMR ethos, in the architecture."
+  items:
+    - { title: "Privacy is the default, not a setting", text: "Tor-only upstreams, localhost-bound RPC, no public port forwarding. You opt out of privacy — never in." }
+    - { title: "Least privilege, everywhere", text: "Capability-scoped containers, a read-only Docker-socket proxy kept separate from a start/stop-only one, owner-only secrets." }
+    - { title: "Verifiable and pinned", text: "Third-party binaries are SHA256-checked and version-pinned. No curl | bash trust." }
+    - { title: "The why lives in the code", text: "Non-obvious decisions are documented inline with their reasoning and the issue that drove them." }
+    - { title: "Small, reversible, issue-driven", text: "Config changes are previewed and warn before anything disruptive; failures degrade gracefully." }
+    - { title: "Respect the operator's time", text: "Sensible auto-tuning, one-command setup, and docs treated as a first-class deliverable." }
+
+cta:
+  eyebrow: "// start here"
+  title: "Stand up the whole operation."
+  sub: "A private, multi-rig, merge-mining stack — running before your coffee gets cold."
+  primary:   { label: "Start with Pithead", href: "https://github.com/p2pool-starter-stack/pithead" }
+  secondary: { label: "Provision miners with RigForge", href: "https://github.com/p2pool-starter-stack/rigforge" }

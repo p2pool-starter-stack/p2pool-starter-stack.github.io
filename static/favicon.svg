@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F26822" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Hardrock">
+  <title>Hardrock</title>
+  <rect width="24" height="24" rx="5" fill="#0a0c10"/>
+  <g transform="translate(0 0)">
+    <path d="M12 4 6 10l6 10 6-10z"/>
+    <path d="M6 10h12"/>
+    <path d="M12 4v16"/>
+  </g>
+</svg>
