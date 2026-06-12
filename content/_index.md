@@ -1,3 +1,3 @@
 ---
-title: "Hardrock — Self-hosted Monero + Tari mining, the whole operation"
+title: "P2Pool Starter Stack — Private, self-hosted Monero + Tari mining"
 ---

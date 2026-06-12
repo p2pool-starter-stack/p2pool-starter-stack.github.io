@@ -1,6 +1,6 @@
-# Hardrock — organization website
+# P2Pool Starter Stack — organization website
 
-The marketing / showcase site for the **Hardrock** collective — an orchestrator
+The marketing / showcase site for the **P2Pool Starter Stack** — an orchestrator
 ([Pithead](https://github.com/p2pool-starter-stack/pithead)) and the miners that feed it
 ([RigForge](https://github.com/p2pool-starter-stack/rigforge)) — plus the node-starter stacks to come.
 
@@ -49,7 +49,7 @@ layouts/partials/        ← head / header / footer / icon set
 assets/css/main.css      ← the entire visual system
 assets/js/main.js        ← reveal-on-scroll, header state, copy-to-clipboard
 static/img/              ← marks + dashboard screenshot
-static/favicon.svg       ← Hardrock crystal mark
+static/favicon.svg       ← P2Pool Starter Stack layered mark
 ```
 
 The icon/mark set is inline SVG in [`layouts/partials/icon.html`](layouts/partials/icon.html)

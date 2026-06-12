@@ -1,9 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F26822" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Hardrock">
-  <title>Hardrock</title>
-  <rect width="24" height="24" rx="5" fill="#0a0c10"/>
-  <g transform="translate(0 0)">
-    <path d="M12 4 6 10l6 10 6-10z"/>
-    <path d="M6 10h12"/>
-    <path d="M12 4v16"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F26822" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="P2Pool Starter Stack">
+  <title>P2Pool Starter Stack</title>
+  <rect width="24" height="24" rx="5" fill="#0a0c10" stroke="none"/>
+  <path d="M12 4 19.5 8.4 12 12.8 4.5 8.4z"/>
+  <path d="M4.5 12 12 16.4 19.5 12"/>
+  <path d="M4.5 15.6 12 20 19.5 15.6"/>
 </svg>
