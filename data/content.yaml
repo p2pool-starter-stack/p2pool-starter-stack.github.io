@@ -137,7 +137,7 @@ ethos:
   eyebrow: "// how we build"
   title: "The XMR ethos, in the architecture."
   items:
-    - { title: "Privacy is the default, not a setting", text: "Tor-only upstreams, localhost-bound RPC, no public port forwarding. You opt out of privacy — never in." }
+    - { title: "Privacy is the default, not a setting", text: "Inbound rides Tor hidden services — no port forwarding, your home IP never shown to a peer — and RPC stays localhost-bound. The few clearnet outbound paths left in v1.0 are documented, and go Tor-by-default in v1.1." }
     - { title: "Least privilege, everywhere", text: "Capability-scoped containers, a read-only Docker-socket proxy kept separate from a start/stop-only one, owner-only secrets." }
     - { title: "Verifiable and pinned", text: "Third-party binaries are SHA256-checked and version-pinned. No curl | bash trust." }
     - { title: "The why lives in the code", text: "Non-obvious decisions are documented inline with their reasoning and the issue that drove them." }
