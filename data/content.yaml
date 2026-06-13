@@ -92,9 +92,10 @@ projects:
         - { icon: "cpu",    title: "Hardware-aware tuning", text: "Detects your CPU (EPYC, Ryzen X3D, …), applies a matching profile, then live-A/Bs the hardware prefetcher to keep the fastest." }
         - { icon: "gear",   title: "Kernel-tuned (Linux)", text: "HugePages (1 GB / 2 MB), MSR access, NUMA binding, and a performance governor — configured for you." }
         - { icon: "plug",   title: "Plug-and-play", text: "Points at Pithead, or any RandomX Stratum pool. No wallet in the miner; workers don't need Tor." }
-        - { icon: "shield", title: "Stock XMRig, verified", text: "Compiles upstream XMRig pinned to a verified commit — no custom binary, no curl | bash. Re-runs are idempotent." }
+        - { icon: "shield", title: "Stock XMRig, verified", text: "Compiles upstream XMRig pinned to a verified commit — no custom binary, no curl | bash, a 0% dev fee (XMRig's donate-level pinned to 0), and idempotent re-runs." }
       links:
         - { label: "GitHub", href: "https://github.com/p2pool-starter-stack/rigforge", primary: true }
+        - { label: "Benchmarks", href: "https://github.com/p2pool-starter-stack/rigforge/blob/main/docs/benchmarks.md" }
 
 # High-level roadmap, sequenced from the repos' milestones & open issues (pithead #167 v1.0 waves +
 # the v1.1 / v2 milestones; rigforge v1.0 is fully closed). No dates — waves and versions only.

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <radialGradient id="glow" cx="78%" cy="18%" r="60%">
+      <stop offset="0%" stop-color="#F26822" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#F26822" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#F26822" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#F26822" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0c10"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect x="0" y="0" width="1200" height="6" fill="#F26822"/>
+
+  <!-- faint headframe/stack motif, far right -->
+  <g transform="translate(930,150) scale(13)" fill="none" stroke="#F26822" stroke-opacity="0.10" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2.5 21.5 8 12 13.5 2.5 8z"/>
+    <path d="M2.5 12 12 17.5 21.5 12"/>
+    <path d="M2.5 16 12 21.5 21.5 16"/>
+  </g>
+
+  <!-- brand lockup -->
+  <g transform="translate(90,74)">
+    <g transform="scale(1.9)" fill="none" stroke="#F26822" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2.5 21.5 8 12 13.5 2.5 8z"/>
+      <path d="M2.5 12 12 17.5 21.5 12"/>
+      <path d="M2.5 16 12 21.5 21.5 16"/>
+    </g>
+    <text x="62" y="34" font-size="30" font-weight="800" letter-spacing="3">
+      <tspan fill="#f4f6fb">P2POOL</tspan><tspan fill="#F26822" dx="16">STARTER STACK</tspan>
+    </text>
+  </g>
+
+  <!-- headline -->
+  <text x="90" y="300" font-size="86" font-weight="800" fill="#f4f6fb" letter-spacing="-1">Run the whole</text>
+  <text x="90" y="392" font-size="86" font-weight="800" letter-spacing="-1"><tspan fill="#F26822">operation</tspan><tspan fill="#f4f6fb" dx="34">yourself.</tspan></text>
+
+  <!-- subline -->
+  <text x="92" y="468" font-size="29" fill="#9aa4b2" font-weight="500">Private, self-hosted Monero + Tari mining — an orchestrator</text>
+  <text x="92" y="506" font-size="29" fill="#9aa4b2" font-weight="500">and the miners that feed it, in one command.</text>
+
+  <!-- tag rail -->
+  <text x="92" y="582" font-size="22" fill="#F26822" font-weight="600" font-family="'Menlo', ui-monospace, monospace" letter-spacing="0.5"><tspan>MIT</tspan><tspan fill="#5b6675" dx="14">·</tspan><tspan fill="#F26822" dx="14">0% dev fee</tspan><tspan fill="#5b6675" dx="14">·</tspan><tspan fill="#F26822" dx="14">Tor-first</tspan><tspan fill="#5b6675" dx="14">·</tspan><tspan fill="#F26822" dx="14">no premine, no token</tspan><tspan fill="#5b6675" dx="14">·</tspan><tspan fill="#F26822" dx="14">built in the open</tspan></text>
+</svg>
