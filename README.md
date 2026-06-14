@@ -51,7 +51,9 @@ assets/css/main.css      ← the entire visual system
 assets/js/main.js        ← reveal-on-scroll, header state, copy-to-clipboard
 scripts/refresh-releases.py  ← refreshes data/releases.json from the GitHub API
 static/img/              ← marks + dashboard screenshot + og-card
-static/favicon.svg       ← P2Pool Starter Stack layered mark
+static/favicon.svg       ← P2Pool Starter Stack layered mark (modern browsers)
+static/favicon.ico       ← raster fallback (Safari/legacy tabs) — 16/32/48
+static/apple-touch-icon.png  ← iOS / Safari home-screen icon (180×180)
 static/robots.txt        ← crawl rules (search + AI assistants explicitly welcome)
 ```
 
