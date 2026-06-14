@@ -27,23 +27,32 @@ hero:
 # This leads the page; the projects below are the proof, not the pitch.
 beliefs:
   eyebrow: "// why we built this"
-  title: "Trust no one. Not even us."
+  title: "Beliefs you can see in the code."
   sub: >-
     Money should be yours — private, and free of middlemen — right down to the node that runs it and
-    the rig that earns it. Three convictions the whole stack is built on:
+    the rig that earns it. These aren't slogans: each one is a decision you can see in the defaults,
+    the containers, and the docs.
   items:
     - belief: "Your money should answer to no one."
       text: >-
-        No custodian, no pool operator, no account. You mine to your own wallet behind your own node —
-        rewards come straight from the network, and your keys never leave your hands.
-    - belief: "Privacy isn't something you ask for."
+        You run your own node and your own P2Pool — block rewards come straight from the network to your
+        wallet, with no pool operator, no custodian, and no pool fee. The miner never even holds your
+        wallet address.
+    - belief: "Privacy isn't a setting you switch on."
       text: >-
-        Using your own money shouldn't expose your home IP or need a pool's blessing. The whole stack is
-        Tor-first and private by default — you opt out of privacy, never into it.
+        Monero, Tari, and P2Pool run as Tor hidden services by default — no port forwarding, no home IP
+        advertised to inbound peers, RPC bound to localhost. It's Tor-first, and honest about the few
+        outbound edges that aren't Tor yet.
+    - belief: "Don't trust us. Verify us."
+      text: >-
+        Every binary is version-pinned and SHA256-checked, the install is never curl | bash, and a
+        privacy guide maps every connection that leaves your box — including the trade-offs we haven't
+        closed yet. MIT, with the reasoning kept in the code.
     - belief: "Sovereignty shouldn't take an expert."
       text: >-
-        Running a node and mining without a middleman has been far too hard. We made the whole private
-        stack one command — open and verifiable, so you don't have to trust us either.
+        One command provisions the node, Tor, payouts, RandomX kernel tuning, and the dashboard — with
+        sensible defaults, a preview before anything disruptive, and a doctor when something looks off.
+        The fiddly part is done; you keep the control.
 
 # Mono stat band under the hero.
 stats:
