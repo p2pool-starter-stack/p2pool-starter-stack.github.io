@@ -93,7 +93,7 @@ projects:
         - { icon: "cpu",    title: "Hardware-aware tuning", text: "Detects your CPU (EPYC, Ryzen X3D, …), applies a matching profile, then live-A/Bs the hardware prefetcher to keep the fastest." }
         - { icon: "gear",   title: "Kernel-tuned (Linux)", text: "HugePages (1 GB / 2 MB), MSR access, NUMA binding, and a performance governor — configured for you." }
         - { icon: "plug",   title: "Plug-and-play", text: "Points at Pithead, or any RandomX Stratum pool. No wallet in the miner; workers don't need Tor." }
-        - { icon: "shield", title: "Stock XMRig, verified", text: "Compiles upstream XMRig pinned to a verified commit — no custom binary, no curl | bash, a 0% dev fee (XMRig's donate-level pinned to 0), and idempotent re-runs." }
+        - { icon: "shield", title: "Stock XMRig, verified", text: "Compiles upstream XMRig pinned to a verified commit — no custom binary, no curl | bash. Keeps XMRig's standard 1% dev fee (it funds the upstream XMRig project, not us); one line turns it off. Idempotent re-runs." }
       links:
         - { label: "GitHub", href: "https://github.com/p2pool-starter-stack/rigforge", primary: true }
         - { label: "Benchmarks", href: "https://github.com/p2pool-starter-stack/rigforge/blob/main/docs/benchmarks.md" }
@@ -131,7 +131,7 @@ roadmap:
   donate:
     eyebrow: "// fuel the roadmap"
     title: "Built in the open. Funded by the people who run it."
-    text: "Every wave above shipped by hand, issue by issue — no VC, no token, no premine. If this stack saved you time, fuel the next wave."
+    text: "Every wave above shipped by hand, issue by issue, out in the open. If this stack saved you time, fuel the next wave."
     note: "Monero, naturally — the same address Pithead ships with."
 
 # "How we build" — the ethos.
@@ -199,9 +199,9 @@ faq:
 
     - q: "Is it free? Are there any pool fees or a dev fee?"
       a: >-
-        Yes — it's free and MIT-licensed. P2Pool charges no pool fee. RigForge compiles stock XMRig with
-        the dev-fee pinned to 0%. No token, no premine, no VC — just an optional Monero donation address if
-        a stack saves you time.
+        Yes — the stack is free and MIT-licensed, and P2Pool charges no pool fee. RigForge keeps XMRig's
+        standard 1% dev fee — that funds the upstream XMRig project, not us — and makes it one line to turn
+        off. The only optional extra is a Monero donation address if a stack saves you time.
 
     - q: "Can I point my existing XMRig miners at it?"
       a: >-
