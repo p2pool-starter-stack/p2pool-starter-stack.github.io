@@ -5,14 +5,13 @@
 
 hero:
   eyebrow: "Private Monero mining · self-hosted"
-  title_lead: "Run the whole"
-  title_accent: "operation"
-  title_tail: "yourself."
+  title_lead: "Money you don't have to"
+  title_accent: "trust"
+  title_tail: "anyone with."
   sub: >-
-    The <strong>P2Pool&nbsp;Starter&nbsp;Stack</strong> is open-source infrastructure for private,
-    optimized <strong>Monero&nbsp;+&nbsp;Tari</strong> mining on hardware you own — an
-    <strong>orchestrator</strong> and the <strong>miners</strong> that feed it.
-    No custodians. No exposed home IP. No hand-tuning.
+    We believe you should be able to <strong>earn and hold private money</strong> — Monero, on your
+    own node — without a custodian, a pool operator, or anyone watching your connection. That's always
+    been expert-only. <strong>We made it one command.</strong>
   command:
     title: "you@home: ~/pithead"
     lines:
@@ -23,6 +22,28 @@ hero:
   cta_primary:   { label: "Get Pithead", href: "https://github.com/p2pool-starter-stack/pithead" }
   cta_secondary: { label: "View on GitHub", href: "https://github.com/p2pool-starter-stack" }
   meta: "MIT-licensed · built in the open · zero third-party requests"
+
+# "Why we built this" — the belief, stated first (Simon Sinek: start with why).
+# This leads the page; the projects below are the proof, not the pitch.
+beliefs:
+  eyebrow: "// why we built this"
+  title: "Trust no one. Not even us."
+  sub: >-
+    Money should be yours — private, and free of middlemen — right down to the node that runs it and
+    the rig that earns it. Three convictions the whole stack is built on:
+  items:
+    - belief: "Your money should answer to no one."
+      text: >-
+        No custodian, no pool operator, no account. You mine to your own wallet behind your own node —
+        rewards come straight from the network, and your keys never leave your hands.
+    - belief: "Privacy isn't something you ask for."
+      text: >-
+        Using your own money shouldn't expose your home IP or need a pool's blessing. The whole stack is
+        Tor-first and private by default — you opt out of privacy, never into it.
+    - belief: "Sovereignty shouldn't take an expert."
+      text: >-
+        Running a node and mining without a middleman has been far too hard. We made the whole private
+        stack one command — open and verifiable, so you don't have to trust us either.
 
 # Mono stat band under the hero.
 stats:
