@@ -16,8 +16,9 @@ hero:
   command:
     title: "you@home: ~/pithead"
     lines:
-      - { p: true,  text: "git clone https://github.com/p2pool-starter-stack/pithead" }
-      - { p: true,  text: "cd pithead && ./pithead setup" }
+      - { p: true,  text: "curl -fsSL https://github.com/p2pool-starter-stack/pithead/releases/latest/download/pithead.tar.gz | tar xz" }
+      - { p: true,  text: "cd pithead && cp config.json.template config.json" }
+      - { p: true,  text: "./pithead setup" }
       - { p: false, text: "✓ Tor provisioned · kernel tuned · stack live over HTTPS" }
   cta_primary:   { label: "Get Pithead", href: "https://github.com/p2pool-starter-stack/pithead" }
   cta_secondary: { label: "View on GitHub", href: "https://github.com/p2pool-starter-stack" }
