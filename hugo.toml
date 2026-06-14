@@ -1,17 +1,20 @@
 baseURL = "https://p2pool-starter-stack.github.io/"
 defaultContentLanguage = "en"
-title = "Hardrock"
-enableRobotsTXT = true
+title = "P2Pool Starter Stack"
+# robots.txt is served from static/robots.txt (hand-written: welcomes AI/search
+# crawlers + sitemap). Keep Hugo's generator OFF so it doesn't clobber it with a
+# bare "User-agent: *".
+enableRobotsTXT = false
 
-# Industrial-cypherpunk showcase for the Hardrock collective.
+# Industrial-cypherpunk showcase for the P2Pool Starter Stack.
 # Single-page landing driven by data/content.yaml + layouts/index.html.
 
 disableKinds = ["taxonomy", "term", "rss"]
 
 [params]
-  brand = "Hardrock"
-  tagline = "Self-hosted crypto infrastructure — the whole operation."
-  description = "Hardrock builds open-source stacks for private, optimized Monero + Tari mining on hardware you own. No custodians. No exposed home IP. No hand-tuning."
+  brand = "P2Pool Starter Stack"
+  tagline = "Private, self-hosted Monero + Tari mining — the whole operation."
+  description = "The P2Pool Starter Stack is open-source infrastructure for private, optimized Monero + Tari mining on hardware you own. No custodians. No exposed home IP. No hand-tuning."
   org = "p2pool-starter-stack"
   orgURL = "https://github.com/p2pool-starter-stack"
   donateXMR = "89VGXHYEYdTJ4qQPoSZSD4BQsXCm6vCjUF2y2Vm42mA8ESLXA4XpmsvWMFB2stQw7p5UXnyZ81EMtgkCYqjYBPow8v7btKv"

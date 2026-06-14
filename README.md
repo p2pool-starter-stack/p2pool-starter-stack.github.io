@@ -1,6 +1,6 @@
-# Hardrock — organization website
+# P2Pool Starter Stack — organization website
 
-The marketing / showcase site for the **Hardrock** collective — an orchestrator
+The marketing / showcase site for the **P2Pool Starter Stack** — an orchestrator
 ([Pithead](https://github.com/p2pool-starter-stack/pithead)) and the miners that feed it
 ([RigForge](https://github.com/p2pool-starter-stack/rigforge)) — plus the node-starter stacks to come.
 
@@ -43,17 +43,55 @@ All landing-page copy is in **[`data/content.yaml`](data/content.yaml)** — edi
 templates. The page is assembled by [`layouts/index.html`](layouts/index.html) from that data.
 
 ```
-data/content.yaml        ← all copy (hero, stats, projects, roadmap, ethos, CTA)
+data/content.yaml        ← all copy (hero, stats, projects, roadmap, ethos, FAQ, CTA)
+data/releases.json       ← latest pithead / rigforge release tags (version badges)
 layouts/index.html       ← single-page assembly
-layouts/partials/        ← head / header / footer / icon set
+layouts/partials/        ← head / header / footer / icon set / schema (JSON-LD)
 assets/css/main.css      ← the entire visual system
 assets/js/main.js        ← reveal-on-scroll, header state, copy-to-clipboard
-static/img/              ← marks + dashboard screenshot
-static/favicon.svg       ← Hardrock crystal mark
+scripts/refresh-releases.py  ← refreshes data/releases.json from the GitHub API
+static/img/              ← marks + dashboard screenshot + og-card
+static/favicon.svg       ← P2Pool Starter Stack layered mark
+static/robots.txt        ← crawl rules (search + AI assistants explicitly welcome)
 ```
 
 The icon/mark set is inline SVG in [`layouts/partials/icon.html`](layouts/partials/icon.html)
 (`{{ partial "icon.html" "pithead" }}`), so every mark inherits color from CSS via `currentColor`.
+
+## Discoverability (SEO / GEO)
+
+The site is tuned to be found — and cited — when people (or their AI assistants) ask how to mine
+Monero privately. The copy is keyword-aware without being spammy, and three machine-readable layers
+back it up:
+
+- **[`layouts/partials/schema.html`](layouts/partials/schema.html)** emits one `application/ld+json`
+  graph: an `Organization`, a `WebSite`, a `SoftwareApplication` for each of Pithead and RigForge
+  (free, MIT, OS-tagged), and a `FAQPage`. The FAQ entries are generated from the same
+  `data/content.yaml → faq` block the page renders, so the visible Q&A and the structured data never
+  drift. Built through `jsonify | safeJS`, so escaping is always valid.
+- **[`layouts/partials/head.html`](layouts/partials/head.html)** carries the title/description,
+  canonical, Open Graph + Twitter card (`static/img/og-card.png`), and `robots: max-image-preview:large`.
+- **[`static/robots.txt`](static/robots.txt)** allows everything and explicitly welcomes answer-engine
+  crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, …) plus the auto-generated `sitemap.xml`.
+
+After editing the FAQ or any project copy, paste the built page into Google's
+[Rich Results Test](https://search.google.com/test/rich-results) to confirm the JSON-LD still validates.
+
+## Version badges (kept current automatically)
+
+Each project card shows the latest release tag of its repo (e.g. `v1.0.2`). To keep the site's
+**zero third-party requests** promise, the version is **baked in at build time** — the page never
+calls out at runtime, and CI stays deterministic (no network):
+
+- The Hugo build only reads **[`data/releases.json`](data/releases.json)** — a committed fallback
+  that the page renders from.
+- **[`scripts/refresh-releases.py`](scripts/refresh-releases.py)** updates that file from the GitHub
+  Releases API. It's **best-effort**: on any API/network/rate-limit error it keeps the committed value,
+  so it can never fail a build. Set `GH_TOKEN` to dodge the unauthenticated rate limit.
+- The **deploy** workflow runs that script before each Hugo build (with the built-in `GITHUB_TOKEN`)
+  and on a **daily `schedule`**, so the live badges track new releases without a manual push.
+
+Refresh the committed fallback locally with `python3 scripts/refresh-releases.py`.
 
 ## Deploy
 

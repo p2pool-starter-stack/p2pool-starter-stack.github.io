@@ -1,4 +1,4 @@
-// Hardrock — tiny, no-dependency progressive enhancement.
+// P2Pool Starter Stack — tiny, no-dependency progressive enhancement.
 (function () {
   "use strict";
   var doc = document.documentElement;
