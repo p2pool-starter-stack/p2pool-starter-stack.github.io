@@ -5,14 +5,13 @@
 
 hero:
   eyebrow: "Private Monero mining · self-hosted"
-  title_lead: "Run the whole"
-  title_accent: "operation"
-  title_tail: "yourself."
+  title_lead: "Own the whole"
+  title_accent: "operation."
+  title_tail: ""
   sub: >-
-    The <strong>P2Pool&nbsp;Starter&nbsp;Stack</strong> is open-source infrastructure for private,
-    optimized <strong>Monero&nbsp;+&nbsp;Tari</strong> mining on hardware you own — an
-    <strong>orchestrator</strong> and the <strong>miners</strong> that feed it.
-    No custodians. No exposed home IP. No hand-tuning.
+    We built this to mine Monero on a stack you <strong>own outright</strong> — no operator taking a
+    cut, no custodian, and your mining kept quietly to yourself. Now it's <strong>one command</strong>,
+    so anyone can.
   command:
     title: "you@home: ~/pithead"
     lines:
@@ -23,6 +22,34 @@ hero:
   cta_primary:   { label: "Get Pithead", href: "https://github.com/p2pool-starter-stack/pithead" }
   cta_secondary: { label: "View on GitHub", href: "https://github.com/p2pool-starter-stack" }
   meta: "MIT-licensed · built in the open · zero third-party requests"
+
+# "Why we built this" — the belief, stated first (Simon Sinek: start with why).
+# This leads the page; the projects below are the proof, not the pitch.
+beliefs:
+  eyebrow: "// why we built this"
+  title: "Why it exists — and where to see it."
+  sub: >-
+    It started with wanting a Monero mine I owned outright: private, and free of middlemen. None of
+    this is a slogan — each belief is a decision you can see in the defaults, the containers, and the docs.
+  items:
+    - belief: "Own the whole stack."
+      text: >-
+        Your node, your P2Pool, your dashboard — the entire operation runs on hardware you control, from
+        config you can read. Nothing rented, nothing hosted for you, nothing anyone else can switch off.
+    - belief: "Mine without telling the world."
+      text: >-
+        Monero, Tari, and P2Pool run as Tor hidden services by default — no port forwarding, no home IP
+        advertised to inbound peers. Your mining stays your business. Tor-first today, and honest about
+        the few outbound edges still on clearnet.
+    - belief: "Keep what you earn."
+      text: >-
+        P2Pool pays block rewards straight to your wallet — no pool operator, no cut, no account. Even
+        the miner's dev fee is just XMRig's standard 1%, and one line sets it to zero.
+    - belief: "And it shouldn't take an expert."
+      text: >-
+        One command provisions the node, Tor, payouts, RandomX kernel tuning, and the dashboard —
+        sensible defaults, a preview before anything disruptive, and a doctor when something looks off.
+        The fiddly part is done; you keep the control.
 
 # Mono stat band under the hero.
 stats:

@@ -29,6 +29,40 @@
   </div>
 </section>
 
+{{/* ───────────────────────── WHY / BELIEFS ───────────────────────── */}}
+<section class="section section-alt" id="why">
+  <div class="wrap">
+    <p class="eyebrow mono reveal">{{ $c.beliefs.eyebrow }}</p>
+    <h2 class="section-title reveal">{{ $c.beliefs.title }}</h2>
+    {{ with $c.beliefs.sub }}<p class="section-sub reveal">{{ . }}</p>{{ end }}
+    <div class="beliefs-grid">
+      {{ range $c.beliefs.items }}
+      <article class="belief reveal">
+        <h3 class="belief-title">{{ .belief }}</h3>
+        <p class="belief-text">{{ .text }}</p>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* ───────────────────────── ETHOS (the "how") ───────────────────────── */}}
+<section class="section" id="ethos">
+  <div class="wrap">
+    <p class="eyebrow mono reveal">{{ $c.ethos.eyebrow }}</p>
+    <h2 class="section-title reveal">{{ $c.ethos.title }}</h2>
+    <div class="cards-3 ethos-grid">
+      {{ range $i, $e := $c.ethos.items }}
+      <article class="card ethos-card reveal">
+        <span class="ethos-num mono">{{ printf "%02d" (add $i 1) }}</span>
+        <h3 class="card-title">{{ $e.title }}</h3>
+        <p class="card-text">{{ $e.text }}</p>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
 {{/* ───────────────────────── STATS ───────────────────────── */}}
 <section class="stats-band">
   <div class="wrap stats-grid">
@@ -184,25 +218,8 @@
   </div>
 </section>
 
-{{/* ───────────────────────── ETHOS ───────────────────────── */}}
-<section class="section section-alt" id="ethos">
-  <div class="wrap">
-    <p class="eyebrow mono reveal">{{ $c.ethos.eyebrow }}</p>
-    <h2 class="section-title reveal">{{ $c.ethos.title }}</h2>
-    <div class="cards-3 ethos-grid">
-      {{ range $i, $e := $c.ethos.items }}
-      <article class="card ethos-card reveal">
-        <span class="ethos-num mono">{{ printf "%02d" (add $i 1) }}</span>
-        <h3 class="card-title">{{ $e.title }}</h3>
-        <p class="card-text">{{ $e.text }}</p>
-      </article>
-      {{ end }}
-    </div>
-  </div>
-</section>
-
 {{/* ───────────────────────── FAQ ───────────────────────── */}}
-<section class="section" id="faq">
+<section class="section section-alt" id="faq">
   <div class="wrap">
     <p class="eyebrow mono reveal">{{ $c.faq.eyebrow }}</p>
     <h2 class="section-title reveal">{{ $c.faq.title }}</h2>
