@@ -63,7 +63,7 @@ projects:
         P2Pool, Tari merge mining, a single mining endpoint, and a live dashboard —
         all behind Tor, in one command.
       image: "img/dashboard.png"
-      image_alt: "The Pithead dashboard — live hashrate, sync progress, and per-worker stats"
+      image_alt: "The Pithead dashboard — live hashrate, P2Pool/XvB split, XvB tier, and per-worker stats"
       features:
         - { icon: "onion",  title: "Private by default", text: "Tor hidden services for Monero, Tari, and P2Pool — your router stays shut and your home IP is never advertised to an inbound peer." }
         - { icon: "pick",   title: "Monero + Tari, merge-mined", text: "Every hash mines Monero on zero-fee P2Pool and merge-mines Tari at once — a second payout for zero extra power or config." }
