@@ -82,6 +82,7 @@
     <p class="section-sub reveal">{{ $c.projects.sub }}</p>
 
     {{ range $c.projects.items }}
+    {{ $ver := index hugo.Data.releases .id }}
     <article class="project reveal accent-{{ .accent }}{{ if .featured }} project-featured{{ end }}" id="{{ .id }}">
       <div class="project-head">
         <span class="project-mark">{{ partial "icon.html" .mark }}</span>
@@ -89,7 +90,10 @@
           <h3 class="project-name">{{ .name }}</h3>
           <span class="project-role mono">{{ .role }}</span>
         </div>
-        {{ if .featured }}<span class="project-flag mono">★ the star</span>{{ end }}
+        <div class="project-tags">
+          {{ if $ver }}<a class="project-ver mono" href="https://github.com/p2pool-starter-stack/{{ .id }}/releases/latest" target="_blank" rel="noopener" aria-label="{{ .name }} latest release {{ $ver }}">{{ $ver }}</a>{{ end }}
+          {{ if .featured }}<span class="project-flag mono">★ the star</span>{{ end }}
+        </div>
       </div>
       <p class="project-tagline">{{ .tagline }}</p>
       <p class="project-blurb">{{ .blurb }}</p>

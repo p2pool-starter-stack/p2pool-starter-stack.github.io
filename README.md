@@ -44,10 +44,12 @@ templates. The page is assembled by [`layouts/index.html`](layouts/index.html) f
 
 ```
 data/content.yaml        ← all copy (hero, stats, projects, roadmap, ethos, FAQ, CTA)
+data/releases.json       ← latest pithead / rigforge release tags (version badges)
 layouts/index.html       ← single-page assembly
 layouts/partials/        ← head / header / footer / icon set / schema (JSON-LD)
 assets/css/main.css      ← the entire visual system
 assets/js/main.js        ← reveal-on-scroll, header state, copy-to-clipboard
+scripts/refresh-releases.py  ← refreshes data/releases.json from the GitHub API
 static/img/              ← marks + dashboard screenshot + og-card
 static/favicon.svg       ← P2Pool Starter Stack layered mark
 static/robots.txt        ← crawl rules (search + AI assistants explicitly welcome)
@@ -74,6 +76,22 @@ back it up:
 
 After editing the FAQ or any project copy, paste the built page into Google's
 [Rich Results Test](https://search.google.com/test/rich-results) to confirm the JSON-LD still validates.
+
+## Version badges (kept current automatically)
+
+Each project card shows the latest release tag of its repo (e.g. `v1.0.2`). To keep the site's
+**zero third-party requests** promise, the version is **baked in at build time** — the page never
+calls out at runtime, and CI stays deterministic (no network):
+
+- The Hugo build only reads **[`data/releases.json`](data/releases.json)** — a committed fallback
+  that the page renders from.
+- **[`scripts/refresh-releases.py`](scripts/refresh-releases.py)** updates that file from the GitHub
+  Releases API. It's **best-effort**: on any API/network/rate-limit error it keeps the committed value,
+  so it can never fail a build. Set `GH_TOKEN` to dodge the unauthenticated rate limit.
+- The **deploy** workflow runs that script before each Hugo build (with the built-in `GITHUB_TOKEN`)
+  and on a **daily `schedule`**, so the live badges track new releases without a manual push.
+
+Refresh the committed fallback locally with `python3 scripts/refresh-releases.py`.
 
 ## Deploy
 
