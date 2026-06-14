@@ -1,7 +1,10 @@
 baseURL = "https://p2pool-starter-stack.github.io/"
 defaultContentLanguage = "en"
 title = "P2Pool Starter Stack"
-enableRobotsTXT = true
+# robots.txt is served from static/robots.txt (hand-written: welcomes AI/search
+# crawlers + sitemap). Keep Hugo's generator OFF so it doesn't clobber it with a
+# bare "User-agent: *".
+enableRobotsTXT = false
 
 # Industrial-cypherpunk showcase for the P2Pool Starter Stack.
 # Single-page landing driven by data/content.yaml + layouts/index.html.

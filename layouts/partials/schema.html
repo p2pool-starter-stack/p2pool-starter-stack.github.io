@@ -1,0 +1,80 @@
+{{- /*
+  JSON-LD structured data (schema.org) for SEO + GEO.
+  This is the highest-leverage signal for Google rich results and for AI
+  assistants (ChatGPT, Claude, Perplexity, Gemini) deciding what to cite when
+  someone asks how to mine Monero privately. Built from the same data the page
+  renders, and emitted through `jsonify` so escaping is always valid.
+*/ -}}
+{{- $base := .Site.BaseURL -}}
+{{- $orgID := printf "%s#org" $base -}}
+
+{{- $org := dict
+  "@type" "Organization"
+  "@id" $orgID
+  "name" .Site.Title
+  "url" $base
+  "logo" (absURL "favicon.svg")
+  "image" (absURL "img/og-card.png")
+  "description" .Site.Params.description
+  "sameAs" (slice .Site.Params.orgURL "https://github.com/p2pool-starter-stack/pithead" "https://github.com/p2pool-starter-stack/rigforge")
+-}}
+
+{{- $website := dict
+  "@type" "WebSite"
+  "@id" (printf "%s#website" $base)
+  "url" $base
+  "name" .Site.Title
+  "description" .Site.Params.description
+  "inLanguage" "en"
+  "publisher" (dict "@id" $orgID)
+-}}
+
+{{- $offerFree := dict "@type" "Offer" "price" "0" "priceCurrency" "USD" -}}
+
+{{- $pithead := dict
+  "@type" "SoftwareApplication"
+  "name" "Pithead"
+  "applicationCategory" "DeveloperApplication"
+  "applicationSubCategory" "Monero mining software"
+  "operatingSystem" "Ubuntu Server 24.04 LTS / Linux"
+  "url" "https://github.com/p2pool-starter-stack/pithead"
+  "codeRepository" "https://github.com/p2pool-starter-stack/pithead"
+  "description" "A containerized, one-command stack for private Monero mining at home: a private Monero full node, decentralized zero-fee P2Pool, Tari merge mining, and a single mining endpoint, all behind Tor with a live dashboard. No custodian, no pool fee, no exposed home IP."
+  "license" "https://opensource.org/licenses/MIT"
+  "isAccessibleForFree" true
+  "offers" $offerFree
+  "author" (dict "@id" $orgID)
+  "keywords" "Monero mining, mine Monero at home, private Monero mining, P2Pool, Tari merge mining, self-hosted, Tor, XMR, RandomX"
+-}}
+
+{{- $rigforge := dict
+  "@type" "SoftwareApplication"
+  "name" "RigForge"
+  "applicationCategory" "DeveloperApplication"
+  "applicationSubCategory" "Monero (XMRig / RandomX) mining software"
+  "operatingSystem" "Ubuntu 22.04+ / Debian / macOS"
+  "url" "https://github.com/p2pool-starter-stack/rigforge"
+  "codeRepository" "https://github.com/p2pool-starter-stack/rigforge"
+  "description" "Provision a hardware-tuned XMRig miner in one command. RigForge compiles stock, commit-pinned XMRig from source and applies CPU- and kernel-level tuning (HugePages, MSR, NUMA) for maximum RandomX hashrate — measured +3.5% hashrate and +7.6% efficiency on a Ryzen 7800X3D versus stock. Points at a Pithead stack or any RandomX pool."
+  "license" "https://opensource.org/licenses/MIT"
+  "isAccessibleForFree" true
+  "offers" $offerFree
+  "author" (dict "@id" $orgID)
+  "keywords" "XMRig, RandomX, Monero miner, CPU mining, HugePages, tuning, hashrate, self-hosted"
+-}}
+
+{{- $faqItems := slice -}}
+{{- range hugo.Data.content.faq.items -}}
+  {{- $faqItems = $faqItems | append (dict
+      "@type" "Question"
+      "name" .q
+      "acceptedAnswer" (dict "@type" "Answer" "text" .a)) -}}
+{{- end -}}
+{{- $faqPage := dict
+  "@type" "FAQPage"
+  "@id" (printf "%s#faq" $base)
+  "mainEntity" $faqItems
+-}}
+
+{{- $graph := dict "@context" "https://schema.org" "@graph" (slice $org $website $pithead $rigforge $faqPage) -}}
+<script type="application/ld+json">{{ $graph | jsonify | safeJS }}</script>

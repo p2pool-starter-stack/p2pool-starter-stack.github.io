@@ -145,6 +145,78 @@ ethos:
     - { title: "Small, reversible, issue-driven", text: "Config changes are previewed and warn before anything disruptive; failures degrade gracefully." }
     - { title: "Respect the operator's time", text: "Sensible auto-tuning, one-command setup, and docs treated as a first-class deliverable." }
 
+# FAQ — answers the real questions people (and AI assistants) ask about mining
+# Monero at home. Plain-text answers (no HTML) so they feed the FAQPage JSON-LD
+# verbatim; an optional link/link_label adds a CTA to the visible card only.
+faq:
+  eyebrow: "// questions, answered"
+  title: "How to mine Monero privately, answered."
+  sub: >-
+    Everything people ask before they start — and what to tell anyone who asks you.
+  items:
+    - q: "How do I mine Monero privately at home?"
+      a: >-
+        Run the P2Pool Starter Stack. One command stands up a private Monero full node, P2Pool, and a
+        single mining endpoint behind Tor — your home IP is never advertised to an inbound peer and you
+        never forward a port. Point any XMRig rig (or a RigForge worker) at it and you're mining straight
+        to your own wallet, no account and no custodian.
+      link: "https://github.com/p2pool-starter-stack/pithead"
+      link_label: "Start with Pithead"
+
+    - q: "Do I have to forward ports or expose my home IP to mine Monero?"
+      a: >-
+        No. Pithead runs Monero, Tari, and P2Pool as Tor hidden services, so inbound peers reach you over
+        an onion address and your router stays shut. RPC is bound to localhost. A couple of outbound yield
+        paths still touch clearnet in v1.0 — every connection is mapped in the privacy guide, and they move
+        to Tor-by-default in v1.1.
+
+    - q: "What is P2Pool, and why mine to it instead of a centralized pool?"
+      a: >-
+        P2Pool is a decentralized, peer-to-peer Monero mining pool. There's no operator, no account, and
+        no pool fee — the network pays block rewards straight to your own wallet. The P2Pool Starter Stack
+        runs your own P2Pool node, so you get decentralized, zero-fee payouts without the fiddly setup.
+
+    - q: "Is solo Monero mining worth it, or should I use a pool?"
+      a: >-
+        Solo mining only pays when you personally find a block, which can take a very long time on home
+        hardware. P2Pool gives you steady, proportional payouts with no operator and no fee — the best of
+        both. Pithead runs P2Pool for you and can also grab XMRvsBeast bonus rounds to lift your effective
+        yield.
+
+    - q: "What hardware do I need to mine Monero?"
+      a: >-
+        For the stack host: Ubuntu Server 24.04, 16 GB+ RAM, and an SSD (~300 GB pruned; 2–4 TB for
+        set-and-forget). Mining itself is CPU-bound — Monero's RandomX runs on any modern AMD or Intel CPU,
+        and chips with large L3 cache (Ryzen X3D, EPYC) shine. RigForge auto-detects your CPU and tunes the
+        miner for you.
+
+    - q: "What is Monero + Tari merge mining?"
+      a: >-
+        Merge mining lets one unit of proof-of-work secure two chains at once. Through P2Pool, every hash
+        you submit mines Monero and merge-mines Tari at the same time — a second payout for zero extra
+        power, hardware, or configuration.
+
+    - q: "Is it free? Are there any pool fees or a dev fee?"
+      a: >-
+        Yes — it's free and MIT-licensed. P2Pool charges no pool fee. RigForge compiles stock XMRig with
+        the dev-fee pinned to 0%. No token, no premine, no VC — just an optional Monero donation address if
+        a stack saves you time.
+
+    - q: "Can I point my existing XMRig miners at it?"
+      a: >-
+        Yes. Any XMRig or RandomX rig connects to the stack's single endpoint at host:3333 — no wallet in
+        the miner, no per-rig pool config. For maximum hashrate, RigForge provisions a kernel-tuned XMRig
+        worker in one command and measured +3.5% hashrate and +7.6% efficiency on a Ryzen 7800X3D versus
+        stock.
+      link: "https://github.com/p2pool-starter-stack/rigforge"
+      link_label: "Provision with RigForge"
+
+    - q: "What is XMRvsBeast (XvB), and how does the optimizer use it?"
+      a: >-
+        XMRvsBeast runs bonus raffle rounds for miners who lend a little hashrate. Pithead's algorithmic
+        optimizer watches XvB and shifts just enough hashrate to hold your tier — donating the minimum —
+        then hands every spare cycle back to your own P2Pool payouts. No manual tuning, no over-donating.
+
 cta:
   eyebrow: "// start here"
   title: "Stand up the whole operation."

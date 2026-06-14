@@ -197,6 +197,25 @@
   </div>
 </section>
 
+{{/* ───────────────────────── FAQ ───────────────────────── */}}
+<section class="section" id="faq">
+  <div class="wrap">
+    <p class="eyebrow mono reveal">{{ $c.faq.eyebrow }}</p>
+    <h2 class="section-title reveal">{{ $c.faq.title }}</h2>
+    <p class="section-sub reveal">{{ $c.faq.sub }}</p>
+
+    <div class="faq-grid">
+      {{ range $c.faq.items }}
+      <article class="faq-item reveal">
+        <h3 class="faq-q">{{ .q }}</h3>
+        <p class="faq-a">{{ .a }}</p>
+        {{ if .link }}<a class="faq-link mono" href="{{ .link }}" target="_blank" rel="noopener">{{ .link_label }} <span aria-hidden="true">↗</span></a>{{ end }}
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
 {{/* ───────────────────────── CTA ───────────────────────── */}}
 <section class="section cta-section">
   <div class="cta-bg" aria-hidden="true"><div class="glow"></div></div>
