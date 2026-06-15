@@ -183,23 +183,35 @@
       <div class="wave wave-ship reveal">
         <div class="wave-node ship">{{ partial "icon.html" "stack" }}</div>
         <div class="wave-body">
-          <div class="wave-head"><h3 class="wave-name">{{ $c.roadmap.ship.title }}</h3><span class="status-pill ship-pill mono">SHIP</span></div>
+          <div class="wave-head"><h3 class="wave-name">{{ $c.roadmap.ship.title }}</h3><span class="status-pill ship-pill mono">LIVE</span></div>
           <p class="wave-text">{{ $c.roadmap.ship.text }}</p>
         </div>
       </div>
     </div>
 
     <p class="waves-label mono reveal beyond-label">{{ $c.roadmap.beyond_label }}</p>
-    <div class="cards-2 horizon">
-      {{ range $c.roadmap.horizon }}
-      <article class="card horizon-card reveal accent-{{ .accent }}">
-        <div class="horizon-head">
-          <span class="horizon-mark">{{ partial "icon.html" .mark }}</span>
-          <span class="status-pill mono">{{ .tag }}</span>
+    <div class="waves">
+      <span class="waves-rail" aria-hidden="true"></span>
+      {{ range $c.roadmap.releases }}
+      <div class="wave reveal">
+        <div class="wave-node"><span class="mono">{{ .n }}</span></div>
+        <div class="wave-body">
+          <div class="wave-head">
+            <h3 class="wave-name">{{ .name }}</h3>
+            <span class="status-pill mono">{{ .status }}</span>
+          </div>
+          <p class="wave-text">{{ .text }}</p>
         </div>
-        <h3 class="card-title">{{ .name }}</h3>
-        <p class="card-text">{{ .text }}</p>
-      </article>
+      </div>
+      {{ end }}
+      {{ with $c.roadmap.ship_beyond }}
+      <div class="wave wave-ship reveal">
+        <div class="wave-node ship">{{ partial "icon.html" "spark" }}</div>
+        <div class="wave-body">
+          <div class="wave-head"><h3 class="wave-name">{{ .name }}</h3><span class="status-pill ship-pill mono">{{ .tag }}</span></div>
+          <p class="wave-text">{{ .text }}</p>
+        </div>
+      </div>
       {{ end }}
     </div>
 
