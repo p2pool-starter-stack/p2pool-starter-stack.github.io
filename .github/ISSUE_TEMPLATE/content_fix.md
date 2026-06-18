@@ -3,7 +3,7 @@ name: Content fix
 about: A typo, wording, broken/outdated link, or factual correction in the site copy
 title: "[Content] "
 labels: documentation
-assignees: ''
+assignees: ""
 ---
 
 ## What needs fixing?

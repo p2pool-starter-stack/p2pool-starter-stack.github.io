@@ -3,10 +3,20 @@
 #   pipx install pre-commit   # or: pip install pre-commit
 #   pre-commit install
 #
-# Scope here is the secret-scanning gate from #11: gitleaks, pinned to the SAME version CI runs
-# (.github/workflows/security.yml) so a leak is caught locally before it's ever pushed.
+# Each hook is pinned in lockstep with its CI counterpart:
+#   - gitleaks     — secret scan (#11), same version as .github/workflows/security.yml
+#   - prettier     — formatting (#16), same version as package.json; respects .prettierignore
+#   - markdownlint — Markdown lint (#16), same version as package.json; uses .markdownlint-cli2.jsonc
 repos:
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.30.1 # keep in lockstep with GITLEAKS_VERSION in .github/workflows/security.yml
     hooks:
       - id: gitleaks
+  - repo: https://github.com/rbubley/mirrors-prettier
+    rev: v3.8.4 # keep in lockstep with the prettier version in package.json
+    hooks:
+      - id: prettier
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.22.1 # keep in lockstep with markdownlint-cli2 in package.json
+    hooks:
+      - id: markdownlint-cli2

@@ -1,10 +1,10 @@
-# Keep the SHA-pinned GitHub Actions current. Dependabot bumps the commit pin AND the trailing
-# "# vX.Y.Z" comment together, and opens PRs for any security advisories affecting an action we use.
+# Keep dependencies current and surface security advisories — grouped weekly PRs.
 #
-# Scope is github-actions ONLY (#11): this repo is a static Hugo site with no app dependencies —
-# no package.json, go.mod, pip, or docker to track. Hugo itself is installed by version-pinned
-# `wget` of a release .deb in the workflows (HUGO_VERSION), which Dependabot cannot see, so Hugo
-# bumps stay manual (see #15).
+# Two ecosystems:
+#   - github-actions (#11): bumps the SHA pins in .github/workflows/ and their "# vX.Y.Z" comments.
+#   - npm (#16): the Prettier + markdownlint formatting toolchain in package.json (repo root).
+# No pip/go/docker here. Hugo is installed by version-pinned `wget` of a release .deb in the
+# workflows (HUGO_VERSION), which Dependabot cannot see, so Hugo bumps stay manual (see #15).
 version: 2
 updates:
   - package-ecosystem: "github-actions"
@@ -19,5 +19,18 @@ updates:
     groups:
       # One rollup PR for all action bumps rather than one-per-action — low-noise for a repo this small.
       github-actions:
+        patterns:
+          - "*"
+  - package-ecosystem: "npm"
+    directory: "/" # package.json (Prettier + markdownlint) lives at the repo root
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "build" # -> "build(deps): bump prettier ..."
+      include: "scope"
+    labels:
+      - "infra"
+    groups:
+      npm:
         patterns:
           - "*"

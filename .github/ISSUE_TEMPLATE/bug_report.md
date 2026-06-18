@@ -3,7 +3,7 @@ name: Bug report
 about: Report something broken on the site — a rendering glitch, broken link, or display issue
 title: "[Bug] "
 labels: bug
-assignees: ''
+assignees: ""
 ---
 
 ## What happened?
@@ -12,7 +12,7 @@ A clear description of the bug — what you expected to see, and what actually h
 
 ## Where?
 
-- **Page / URL:** (e.g. https://p2pool-starter-stack.github.io/#roadmap)
+- **Page / URL:** (e.g. <https://p2pool-starter-stack.github.io/#roadmap>)
 - **Section or element:** (hero, project card, FAQ, footer, …)
 
 ## Steps to reproduce

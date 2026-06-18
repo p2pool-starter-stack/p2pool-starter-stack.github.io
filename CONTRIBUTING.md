@@ -32,6 +32,7 @@ not in the templates. See the [README](README.md#where-the-content-lives) for th
    hugo --gc --minify --panicOnWarning --baseURL "http://localhost/"   # strict build
    htmltest                                                            # link/anchor/image check
    ```
+
 4. Update the README or other docs for any user-facing change.
 
 ## Secret scanning
