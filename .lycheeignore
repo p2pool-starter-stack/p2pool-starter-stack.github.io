@@ -1,0 +1,9 @@
+# lychee ignore list — one regex per line. For links an automated checker can't reliably verify
+# (rate-limits, auth walls, bot blocks), NOT real link rot. Keep this list small and justified.
+#
+# The site currently links only to stable hosts (github.com, getmonero.org, tari.com,
+# opensource.org, schema.org), so nothing needs ignoring yet. Add entries here when a flaky or
+# auth-walled link appears — e.g. social links that 403 automated requests:
+#
+# https://x\.com/.*
+# https://(www\.)?linkedin\.com/.*

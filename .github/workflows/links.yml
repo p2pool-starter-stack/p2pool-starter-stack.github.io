@@ -1,0 +1,60 @@
+name: Link monitor
+
+# Scheduled external-link check (link rot to getmonero.org, GitHub, Tari, …). Kept OUT of the PR
+# gate on purpose: CI's htmltest checks internal links deterministically, while outbound checks are
+# flaky by nature (third-party outages). On breakage this opens or updates a single tracking issue —
+# it never blocks a PR.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write # open / update the tracking issue
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false # zizmor: artipacked
+      - name: Install Hugo (extended)
+        run: |
+          HUGO_VERSION="$(cat .hugoversion 2>/dev/null || echo 0.162.1)" # tracks .hugoversion once #15 lands
+          wget -O "${{ runner.temp }}/hugo.deb" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "${{ runner.temp }}/hugo.deb"
+      - name: Build site
+        env:
+          HUGO_ENVIRONMENT: production
+          TZ: UTC
+        run: hugo --gc --minify --baseURL "https://p2pool-starter-stack.github.io/"
+      - name: Check external links (lychee)
+        id: lychee
+        uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411 # v2.8.0
+        with:
+          # Internal links are htmltest's job — exclude our own domain so this only audits outbound.
+          args: "--no-progress --exclude p2pool-starter-stack.github.io ./public"
+          output: ./lychee/out.md
+          fail: false # never fail the workflow; report via the tracking issue instead
+      - name: Open or update tracking issue
+        if: steps.lychee.outputs.exit_code != 0
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TITLE: "Broken external links (lychee)"
+        run: |
+          set -euo pipefail
+          existing="$(gh issue list --state open --search "in:title Broken external links" \
+            --json number,title --jq "[.[] | select(.title==\"$TITLE\")][0].number // empty")"
+          if [ -n "$existing" ]; then
+            gh issue edit "$existing" --body-file ./lychee/out.md
+            gh issue comment "$existing" --body "Re-checked by the scheduled run — still failing. Report above was updated."
+          else
+            gh issue create --title "$TITLE" --body-file ./lychee/out.md --label infra
+          fi
