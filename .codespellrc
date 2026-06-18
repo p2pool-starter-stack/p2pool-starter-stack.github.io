@@ -1,0 +1,5 @@
+[codespell]
+# Spell-check public-facing copy and docs. https://github.com/codespell-project/codespell
+# Crypto/Monero/Tari jargon (XMR, monerod, PPLNS, Tari, …) lives in .codespell-ignore.
+skip = .git,node_modules,public,resources,package-lock.json,data/releases.json,*.svg,*.png,*.ico,*.woff,*.woff2
+ignore-words = .codespell-ignore

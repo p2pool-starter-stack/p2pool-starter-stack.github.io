@@ -35,6 +35,10 @@ not in the templates. See the [README](README.md#where-the-content-lives) for th
 
 4. Update the README or other docs for any user-facing change.
 
+CI also runs Prettier + markdownlint (`npm run lint`) and a spell check. Run the spell check
+locally with `pipx run codespell .` — domain jargon (XMR, monerod, PPLNS, Tari, …) is allow-listed
+in [`.codespell-ignore`](.codespell-ignore); add new terms there if a real word is flagged.
+
 ## Secret scanning
 
 CI runs [gitleaks](https://github.com/gitleaks/gitleaks) over the full history on every push and PR,

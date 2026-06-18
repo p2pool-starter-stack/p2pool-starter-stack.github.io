@@ -72,3 +72,15 @@ jobs:
         run: npm run format:check
       - name: markdownlint
         run: npm run lint:md
+
+  spell:
+    name: Spell check (codespell)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false # zizmor: artipacked
+      # pipx is preinstalled on ubuntu runners. Config + dictionary: .codespellrc / .codespell-ignore.
+      - name: Run codespell
+        run: pipx run codespell==2.4.2 .
