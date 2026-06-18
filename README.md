@@ -107,4 +107,10 @@ automatically thereafter.
 To put it on a custom domain later: add `static/CNAME` containing the domain and set `baseURL` in
 `hugo.toml`.
 
-— MIT, like everything else here.
+## License & contributing
+
+Released under the **[MIT License](LICENSE)** — same as
+[Pithead](https://github.com/p2pool-starter-stack/pithead) and
+[RigForge](https://github.com/p2pool-starter-stack/rigforge).
+
+Contributions are welcome — see **[CONTRIBUTING.md](CONTRIBUTING.md)**.
