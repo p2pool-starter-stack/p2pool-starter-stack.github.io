@@ -42,7 +42,7 @@ flakes on a third-party outage — run `htmltest` with `CheckExternal: true` to 
 All landing-page copy is in **[`data/content.yaml`](data/content.yaml)** — edit text there, not in the
 templates. The page is assembled by [`layouts/index.html`](layouts/index.html) from that data.
 
-```
+```text
 data/content.yaml        ← all copy (hero, stats, projects, roadmap, ethos, FAQ, CTA)
 data/releases.json       ← latest pithead / rigforge release tags (version badges)
 layouts/index.html       ← single-page assembly

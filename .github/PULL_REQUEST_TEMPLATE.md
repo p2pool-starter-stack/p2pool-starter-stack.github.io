@@ -10,6 +10,7 @@ For anything non-trivial, open an issue first to discuss the change.
 ## Related issue
 
 <!-- e.g. Closes #123 -->
+
 Closes #
 
 ## Checklist

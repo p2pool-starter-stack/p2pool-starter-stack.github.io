@@ -1,0 +1,16 @@
+# Generated / build output & dependencies
+public/
+resources/
+node_modules/
+
+# Hugo Go-template layouts — Prettier's HTML parser mangles {{ }} syntax, and the
+# whitespace between inline elements here is visually significant. Governed by .editorconfig.
+layouts/
+
+# Generated data (refreshed from the GitHub API by scripts/refresh-releases.py)
+data/releases.json
+
+# Lockfile + vendored / binary assets Prettier shouldn't touch
+package-lock.json
+static/
+*.svg

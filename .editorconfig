@@ -1,0 +1,20 @@
+# EditorConfig — whitespace/EOL baseline across every file surface (#16).
+# https://editorconfig.org  ·  Complements Prettier (CSS/JS/JSON/YAML/MD) and markdownlint;
+# also governs the Hugo Go-template layouts, which Prettier deliberately leaves alone.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# Python (scripts/) conventionally uses 4-space indent.
+[*.py]
+indent_size = 4
+
+# Markdown uses two trailing spaces for a hard line break — don't strip them.
+[*.md]
+trim_trailing_whitespace = false

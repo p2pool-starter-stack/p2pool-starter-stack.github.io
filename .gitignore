@@ -6,6 +6,9 @@
 # htmltest cache / log output
 /tmp/
 
+# Node toolchain (formatting/lint — Prettier + markdownlint)
+/node_modules/
+
 # OS / editor cruft
 .DS_Store
 *.swp

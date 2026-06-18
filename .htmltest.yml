@@ -9,7 +9,7 @@
 DirectoryPath: "public"
 CheckExternal: false
 CheckInternal: true
-CheckInternalHash: true        # verify nav anchors resolve to a real id
+CheckInternalHash: true # verify nav anchors resolve to a real id
 CheckImages: true
 CheckScripts: true
 CheckLinks: true

@@ -23,16 +23,26 @@
     // Reveal-on-scroll. If IntersectionObserver is missing, show everything.
     var reveals = document.querySelectorAll(".reveal");
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var show = function (el) { el.classList.add("in"); };
+    var show = function (el) {
+      el.classList.add("in");
+    };
     if (!("IntersectionObserver" in window) || reduce) {
       reveals.forEach(show);
     } else {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
-        });
-      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
-      reveals.forEach(function (el) { io.observe(el); });
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              show(e.target);
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+      );
+      reveals.forEach(function (el) {
+        io.observe(el);
+      });
       // Safety net: anything already on-screen at load reveals immediately,
       // even if the observer is slow to fire (tall monitors, anchor deep-links).
       requestAnimationFrame(function () {
@@ -52,15 +62,22 @@
         var done = function () {
           if (!state) return;
           state.textContent = "copied ✓";
-          setTimeout(function () { state.textContent = original; }, 1600);
+          setTimeout(function () {
+            state.textContent = original;
+          }, 1600);
         };
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(text).then(done).catch(done);
         } else {
           var ta = document.createElement("textarea");
-          ta.value = text; document.body.appendChild(ta); ta.select();
-          try { document.execCommand("copy"); } catch (e) {}
-          document.body.removeChild(ta); done();
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          try {
+            document.execCommand("copy");
+          } catch (e) {}
+          document.body.removeChild(ta);
+          done();
         }
       });
     });

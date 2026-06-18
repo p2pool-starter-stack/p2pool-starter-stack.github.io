@@ -1,0 +1,16 @@
+{
+  "name": "p2pool-starter-stack-site",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Formatting/lint toolchain for the P2Pool Starter Stack website (Hugo site; see README).",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint:md": "markdownlint-cli2",
+    "lint": "npm run format:check && npm run lint:md"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "0.22.1",
+    "prettier": "3.8.4"
+  }
+}

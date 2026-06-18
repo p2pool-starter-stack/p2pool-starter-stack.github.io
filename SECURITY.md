@@ -12,7 +12,7 @@ The live site is whatever is on the latest `main` — it deploys on every push. 
 branches; please check against current `main` before reporting.
 
 | Version        | Supported          |
-|----------------|--------------------|
+| -------------- | ------------------ |
 | latest `main`  | ✅                 |
 | anything older | ❌ (please update) |
 
