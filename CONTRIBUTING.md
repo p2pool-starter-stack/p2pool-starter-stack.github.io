@@ -34,6 +34,17 @@ not in the templates. See the [README](README.md#where-the-content-lives) for th
    ```
 4. Update the README or other docs for any user-facing change.
 
+## Secret scanning
+
+CI runs [gitleaks](https://github.com/gitleaks/gitleaks) over the full history on every push and PR,
+so an accidentally committed token or credential blocks the merge. Catch it locally first by
+installing the pre-commit hook (it runs the same pinned gitleaks on staged changes):
+
+```bash
+pipx install pre-commit   # or: pip install pre-commit
+pre-commit install
+```
+
 ## Opening a pull request
 
 - Target the `main` branch and fill out the PR template.
