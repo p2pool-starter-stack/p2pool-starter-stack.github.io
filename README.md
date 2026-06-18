@@ -15,6 +15,12 @@ You need [Hugo **extended**](https://gohugo.io/installation/) (≥ 0.162). On ma
 hugo server          # live reload at http://localhost:1313
 ```
 
+CI and the deploy build pin an exact Hugo version in **[`.hugoversion`](.hugoversion)** — a single
+source of truth read by both [`ci.yml`](.github/workflows/ci.yml) and
+[`deploy.yml`](.github/workflows/deploy.yml), so they can't drift. Bump it by editing that one file
+(a weekly [`hugo-bump.yml`](.github/workflows/hugo-bump.yml) job also opens a PR when a newer Hugo
+ships).
+
 ## Build
 
 ```bash

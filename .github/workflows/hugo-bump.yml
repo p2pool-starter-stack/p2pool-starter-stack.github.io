@@ -1,0 +1,62 @@
+name: Bump Hugo
+
+# Dependabot can't track the wget-installed Hugo .deb, so this scheduled job checks for a newer
+# Hugo release and opens a PR updating .hugoversion — the single source of truth read by both
+# ci.yml and deploy.yml. Manual bump: just edit .hugoversion.
+#
+# Note: PRs opened with the built-in GITHUB_TOKEN don't themselves trigger CI (a GitHub
+# limitation), so re-run / push to the bump PR to exercise the strict build before merging.
+
+on:
+  schedule:
+    - cron: "0 8 * * 1" # Mondays 08:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # commit the bump on a branch
+      pull-requests: write # open the PR
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false # zizmor: artipacked
+      - name: Check for a newer Hugo release
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          current="$(cat .hugoversion)"
+          latest="$(gh api repos/gohugoio/hugo/releases/latest --jq '.tag_name' | sed 's/^v//')"
+          echo "current=$current" >> "$GITHUB_OUTPUT"
+          echo "latest=$latest" >> "$GITHUB_OUTPUT"
+          if [ "$current" != "$latest" ]; then
+            printf '%s\n' "$latest" > .hugoversion
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Open bump PR
+        if: steps.check.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main
+          branch: chore/bump-hugo
+          delete-branch: true
+          labels: infra
+          commit-message: "ci: bump Hugo ${{ steps.check.outputs.current }} -> ${{ steps.check.outputs.latest }}"
+          title: "ci: bump Hugo to ${{ steps.check.outputs.latest }}"
+          body: |
+            Automated bump of the single-sourced Hugo version in `.hugoversion`:
+            `${{ steps.check.outputs.current }}` → `${{ steps.check.outputs.latest }}`.
+
+            Both `ci.yml` and `deploy.yml` read this file, so the strict build in CI
+            validates the new version. Re-run CI on this PR (GITHUB_TOKEN-opened PRs
+            don't auto-trigger it) before merging.
