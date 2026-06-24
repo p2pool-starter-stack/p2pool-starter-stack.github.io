@@ -187,8 +187,9 @@ projects:
             href: "https://github.com/p2pool-starter-stack/rigforge/blob/main/docs/benchmarks.md",
           }
 
-# High-level roadmap, sequenced from the repos' milestones & open issues (pithead #167 v1.0 waves +
-# the v1.1 / v2 milestones; rigforge v1.0 is fully closed). No dates — waves and versions only.
+# High-level roadmap, sequenced from both repos' milestones. Pithead drives the version themes
+# (v1.1 privacy through v1.6 deploy-anywhere, then v2 appliance); RigForge ships in lockstep. No
+# dates; waves and versions only.
 roadmap:
   eyebrow: "// the roadmap"
   title: "v1.0 is live. Now, the road to the appliance era."
