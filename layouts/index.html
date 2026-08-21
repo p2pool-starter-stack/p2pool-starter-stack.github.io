@@ -117,6 +117,7 @@
 
     {{ range $c.projects.items }}
     {{ $ver := index hugo.Data.releases .id }}
+    {{ $stars := index hugo.Data.stars .id }}
     <article class="project reveal accent-{{ .accent }}{{ if .featured }} project-featured{{ end }}" id="{{ .id }}">
       <div class="project-head">
         <span class="project-mark">{{ partial "icon.html" .mark }}</span>
@@ -126,7 +127,7 @@
         </div>
         <div class="project-tags">
           {{ if $ver }}<a class="project-ver mono" href="https://github.com/p2pool-starter-stack/{{ .id }}/releases/latest" target="_blank" rel="noopener" aria-label="{{ .name }} latest release {{ $ver }}">{{ $ver }}</a>{{ end }}
-          {{ if .featured }}<span class="project-flag mono">★ the star</span>{{ end }}
+          <a class="project-flag mono" href="https://github.com/p2pool-starter-stack/{{ .id }}" target="_blank" rel="noopener" title="Star {{ .name }} on GitHub" aria-label="Star {{ .name }} on GitHub{{ with $stars }} — {{ . }} stars so far{{ end }}">★ {{ with $stars }}{{ . }}{{ else }}Star{{ end }}</a>
         </div>
       </div>
       <p class="project-tagline">{{ .tagline }}</p>
