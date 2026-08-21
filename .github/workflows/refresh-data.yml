@@ -1,0 +1,47 @@
+name: Refresh release & star data
+
+on:
+  # Runs 30 minutes before deploy.yml's daily 06:17 UTC rebuild so the committed
+  # fallback data is fresh when that build runs. The push below uses the default
+  # GITHUB_TOKEN, which by design does not retrigger other workflows — no double
+  # deploy; the deploy cron (which also re-runs this script at build time) picks
+  # the commit up.
+  schedule:
+    - cron: "47 5 * * *"
+  workflow_dispatch:
+
+# Least-privilege floor: only the refresh job below needs contents:write to
+# push the updated data files. (zizmor: excessive-permissions)
+permissions: {}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false # zizmor: artipacked; the push authenticates explicitly below
+      - name: Refresh data/releases.json and data/stars.json
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/refresh-releases.py
+      - name: Commit and push if changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet -- data/; then
+            echo "Data unchanged; nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/releases.json data/stars.json
+          git commit -m "data: daily refresh of release tags and star counts"
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
