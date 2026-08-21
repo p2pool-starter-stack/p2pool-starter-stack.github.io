@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh data/releases.json with each project's latest GitHub release tag.
+"""Refresh data/releases.json (latest release tag) and data/stars.json (star count) per project.
 
 Run locally (`python3 scripts/refresh-releases.py`) to update the committed
 fallback, or in the deploy workflow to bake the current versions into the build.
@@ -24,10 +24,10 @@ import urllib.request
 ORG = "p2pool-starter-stack"
 REPOS = ("pithead", "rigforge")
 DATA = pathlib.Path(__file__).resolve().parent.parent / "data" / "releases.json"
+STARS = DATA.parent / "stars.json"
 
 
-def latest_tag(repo: str) -> str:
-    url = f"https://api.github.com/repos/{ORG}/{repo}/releases/latest"
+def api_json(url: str) -> dict:
     req = urllib.request.Request(
         url,
         headers={
@@ -39,13 +39,20 @@ def latest_tag(repo: str) -> str:
     if token:
         req.add_header("Authorization", f"Bearer {token}")
     with urllib.request.urlopen(req, timeout=15) as resp:
-        return json.load(resp).get("tag_name", "")
+        return json.load(resp)
+
+
+def latest_tag(repo: str) -> str:
+    return api_json(f"https://api.github.com/repos/{ORG}/{repo}/releases/latest").get("tag_name", "")
 
 
 def main() -> int:
     data: dict[str, str] = {}
+    stars: dict[str, int] = {}
     if DATA.exists():
         data = json.loads(DATA.read_text())
+    if STARS.exists():
+        stars = json.loads(STARS.read_text())
 
     for repo in REPOS:
         try:
@@ -57,8 +64,18 @@ def main() -> int:
                 print(f"{repo}: no tag_name in response, keeping {data.get(repo)!r}", file=sys.stderr)
         except (urllib.error.URLError, OSError, ValueError) as exc:
             print(f"{repo}: keeping fallback {data.get(repo)!r} ({exc})", file=sys.stderr)
+        try:
+            count = api_json(f"https://api.github.com/repos/{ORG}/{repo}").get("stargazers_count")
+            if isinstance(count, int):
+                stars[repo] = count
+                print(f"{repo}: {count} stars")
+            else:
+                print(f"{repo}: no stargazers_count, keeping {stars.get(repo)!r}", file=sys.stderr)
+        except (urllib.error.URLError, OSError, ValueError) as exc:
+            print(f"{repo}: keeping star fallback {stars.get(repo)!r} ({exc})", file=sys.stderr)
 
     DATA.write_text(json.dumps(data, indent=2) + "\n")
+    STARS.write_text(json.dumps(stars, indent=2) + "\n")
     return 0
 
 
