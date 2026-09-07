@@ -202,17 +202,17 @@ projects:
             href: "https://github.com/p2pool-starter-stack/rigforge/blob/main/docs/benchmarks.md",
           }
 
-# High-level roadmap. The waves group pithead's nineteen post-1.0 releases into the themes the
+# High-level roadmap. The waves group pithead's twenty post-1.0 releases into the themes the
 # original roadmap promised (all shipped); the road ahead is the v2 appliance work in review on
-# the develop-v2 branch (PR #1057). No dates; versions only.
+# the develop branch. No dates; versions only.
 roadmap:
   eyebrow: "// the roadmap"
-  title: "Nineteen releases later: the road to the appliance era."
+  title: "Twenty releases later: the road to the appliance era."
   sub: >-
     Built in the open, issue by issue — no vaporware, no roadmap-for-sale. Everything the v1 roadmap
     promised has shipped, release by release, on real hardware. And what's next is already written:
-    Pithead OS, a flashable appliance, in review on the develop-v2 branch right now.
-  waves_label: "shipped · v1.0 → v1.19, theme by theme"
+    Pithead OS, a flashable appliance, in review on the develop branch right now.
+  waves_label: "shipped · v1.0 → v1.20, theme by theme"
   waves:
     - {
         n: "1.1",
@@ -245,9 +245,9 @@ roadmap:
         text: "Co-host behind an existing reverse proxy, let one stack's synced nodes serve others, and point the stack at a remote Monero or Tari node instead of running your own.",
       }
   ship:
-    title: "v1.19 — the whole operation, signed and live."
-    text: "Nineteen releases cut in the open — including two withdrawn and re-cut with the root cause documented in the changelog. Every bundle is now cosign-signed end to end, and the release pipeline refuses to cut an unsigned build."
-  beyond_label: "the road ahead · Pithead OS, in review on develop-v2"
+    title: "v1.20 — the whole operation, signed and live."
+    text: "Twenty releases cut in the open — including two withdrawn and re-cut with the root cause documented in the changelog. Every bundle is now cosign-signed end to end, and the release pipeline refuses to cut an unsigned build."
+  beyond_label: "the road ahead · Pithead OS, in review on develop"
   releases:
     - {
         n: "01",
@@ -276,7 +276,7 @@ roadmap:
   ship_beyond:
     tag: "v2"
     name: "The appliance era"
-    text: "All of it is real code today — hundreds of commits on develop-v2 carrying the image, updater, installer, wizard, and factory reset — under adversarial review and a hardware test battery before the first image is cut. Watch it land in the open."
+    text: "All of it is real code today — hundreds of commits on develop carrying the image, updater, installer, wizard, and factory reset — under adversarial review and a hardware test battery before the first image is cut. Watch it land in the open."
   donate:
     eyebrow: "// fuel the roadmap"
     title: "Built in the open. Funded by the people who run it."
