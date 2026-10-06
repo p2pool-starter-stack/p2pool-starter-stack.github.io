@@ -10,8 +10,8 @@ hero:
   title_tail: ""
   sub: >-
     We built this to mine Monero on a stack you <strong>own outright</strong> — no operator taking a
-    cut, no custodian, and your mining kept quietly to yourself. Now it's <strong>one command</strong>,
-    so anyone can.
+    cut, no custodian, and Tor-first networking by default. Now setup is <strong>one guided
+    command</strong>, so anyone can.
   command:
     title: "you@home: ~/pithead"
     lines:
@@ -19,12 +19,18 @@ hero:
           p: true,
           text: "curl -fsSL https://github.com/p2pool-starter-stack/pithead/releases/latest/download/pithead.tar.gz | tar xz",
         }
-      - { p: true, text: "cd pithead && cp config.minimal.json config.json" }
+      - {
+          p: true,
+          text: "cd pithead && cp config.minimal.json config.json   # then set your payout addresses",
+        }
       - { p: true, text: "./pithead setup" }
-      - { p: false, text: "✓ Tor provisioned · kernel tuned · stack live over HTTPS" }
+      - {
+          p: false,
+          text: "✓ Tor provisioned · kernel tuned · stack up over HTTPS · chains sync before mining starts",
+        }
   cta_primary: { label: "Get Pithead", href: "https://github.com/p2pool-starter-stack/pithead" }
   cta_secondary: { label: "View on GitHub", href: "https://github.com/p2pool-starter-stack" }
-  meta: "MIT-licensed · built in the open · zero third-party requests"
+  meta: "MIT-licensed · built in the open · this site makes zero third-party requests"
 
 # "Why we built this" — the belief, stated first (Simon Sinek: start with why).
 # This leads the page; the projects below are the proof, not the pitch.
@@ -38,21 +44,23 @@ beliefs:
     - belief: "Own the whole stack."
       text: >-
         Your node, your P2Pool, your dashboard — the entire operation runs on hardware you control, from
-        config you can read. Nothing rented, nothing hosted for you, nothing anyone else can switch off.
-    - belief: "Mine without telling the world."
+        config you can read. Nothing rented and nothing hosted for you.
+    - belief: "Tor-first, by default."
       text: >-
         Monero, Tari, and P2Pool run as Tor hidden services by default — no port forwarding, no home IP
-        advertised to inbound peers. All runtime egress rides Tor too, and a host firewall drops any
-        direct clearnet dial. Your mining stays your business.
+        advertised to inbound peers. Runtime egress rides Tor by default, and a host firewall drops
+        direct clearnet dials; the privacy guide lists the opt-in exceptions and the one-time install
+        downloads. P2Pool payout addresses are public, so mine to a dedicated wallet.
     - belief: "Keep what you earn."
       text: >-
         P2Pool pays block rewards straight to your wallet — no pool operator, no cut, no account. Even
         the miner's dev fee is just XMRig's standard 1%, and one line sets it to zero.
     - belief: "And it shouldn't take an expert."
       text: >-
-        One command provisions the node, Tor, payouts, RandomX kernel tuning, and the dashboard —
+        One guided command provisions the node, Tor, payouts, RandomX kernel tuning, and the dashboard —
         sensible defaults, a preview before anything disruptive, and a doctor when something looks off.
-        The fiddly part is done; you keep the control.
+        The chains then sync, which takes a few hours to a day or more, before mining starts. The
+        fiddly part is done; you keep the control.
 
 # Mono stat band under the hero.
 stats:
@@ -60,7 +68,7 @@ stats:
   - { value: "2", label: "chains, merge-mined" }
   - { value: "1", label: "command to set up" }
   - { value: ":3333", label: "one endpoint for every rig" }
-  - { value: "0", label: "ports forwarded · IP exposed" }
+  - { value: "0", label: "ports forwarded" }
 
 # "How they fit together" flow.
 flow:
@@ -79,7 +87,9 @@ flow:
 projects:
   eyebrow: "// the projects"
   title: "Two open-source projects. One private operation."
-  sub: "Everything is MIT-licensed and built in the open."
+  sub: >-
+    Both projects are MIT-licensed and built in the open; the upstream software they run, such as
+    P2Pool and XMRig, keeps its own licenses.
   items:
     - id: "pithead"
       featured: true
@@ -89,26 +99,26 @@ projects:
       role: "the orchestrator"
       tagline: "Private Monero + Tari merge mining, the whole stack, in one command."
       blurb: >-
-        A professional-grade, containerized stack that runs a private Monero full node,
-        P2Pool, Tari merge mining, a single mining endpoint, and a live dashboard —
-        all behind Tor, in one command.
+        A containerized stack that runs a private Monero full node, P2Pool, Tari merge
+        mining, a single mining endpoint, and a live dashboard, with Tor-first networking
+        by default — set up with one guided command.
       image: "img/dashboard.png"
       image_alt: "The Pithead dashboard — live hashrate, P2Pool/XvB split, XvB tier, and per-worker stats"
       features:
         - {
             icon: "onion",
             title: "Private by default",
-            text: "Tor hidden services for Monero, Tari, and P2Pool, and all runtime egress routed over Tor — a fail-closed host firewall drops any direct clearnet dial. Your router stays shut, your home IP stays yours.",
+            text: "Tor hidden services for Monero, Tari, and P2Pool, and runtime egress routed over Tor by default — a fail-closed host firewall drops direct clearnet dials. No port forwarding. The privacy guide lists the opt-in exceptions, remote-node links, and the one-time install downloads.",
           }
         - {
             icon: "pick",
             title: "Monero + Tari, merge-mined",
-            text: "Every hash mines Monero on zero-fee P2Pool and merge-mines Tari at once — a second payout for zero extra power or config.",
+            text: "Your P2Pool hashrate mines Monero on zero-fee P2Pool and merge-mines Tari on the same work, at no cost to the Monero side. Tari needs its own node (on this host, using its own RAM and disk, or one you run elsewhere) and a Tari payout address, and it is mined solo: a Tari reward lands all at once, and blocks can be months apart.",
           }
         - {
             icon: "brain",
             title: "Algorithmic yield optimization",
-            text: "Watches the XMRvsBeast raffle and shifts hashrate to grab bonus rounds — donating only the minimum to hold your tier, then handing every spare cycle back to your own P2Pool payouts.",
+            text: "Watches the XMRvsBeast raffle and shifts hashrate to hold your tier — donating only the minimum needed and routing the rest to your own P2Pool payouts.",
           }
         - {
             icon: "plug",
@@ -123,12 +133,12 @@ projects:
         - {
             icon: "gear",
             title: "Control from the browser",
-            text: "Opt in to edit any setting from a guided form, retune each rig with versioned history, and one-click upgrade when a release lands — every change host-validated behind a login, with a full audit log.",
+            text: "Opt in to edit any setting from a guided form, retune RigForge rigs that enable their own token-authenticated control port, with versioned history, and one-click upgrade when a release lands — every change host-validated behind a login, with a full audit log.",
           }
         - {
             icon: "bolt",
             title: "An operator bot on call",
-            text: "Telegram alerts the moment a node or worker drops — and when it recovers — plus a daily digest, read-only status commands, and a Healthchecks dead-man's switch for the failure the box can't report itself.",
+            text: "Opt-in Telegram alerts the moment a node or worker drops — and when it recovers — plus a daily digest, read-only status commands, and a Healthchecks dead-man's switch for the failure the box can't report itself.",
           }
         - {
             icon: "stack",
@@ -156,15 +166,16 @@ projects:
       role: "the miners"
       tagline: "Provision a hardware-tuned XMRig miner in one command."
       blurb: >-
-        Turn any Ubuntu/Debian — or macOS — machine into a tuned mining worker. RigForge compiles
-        stock, commit-pinned XMRig from source, applies CPU- and kernel-level tuning for maximum
+        Turn an Ubuntu/Debian machine into a tuned mining worker (macOS support is deprecated
+        and untested). RigForge compiles
+        stock, commit-pinned XMRig from source, applies CPU- and kernel-level tuning aimed at
         RandomX hashrate, and runs it as a managed service — then points it at your stack, or any
         RandomX pool.
       features:
         - {
             icon: "bolt",
             title: "One command, bare metal to mining",
-            text: "Installs the toolchain, compiles commit-pinned upstream XMRig, and starts it as a managed service — on Ubuntu/Debian or macOS.",
+            text: "Installs the toolchain, compiles commit-pinned upstream XMRig, and starts it as a managed service — on Ubuntu/Debian.",
           }
         - {
             icon: "chart",
@@ -184,7 +195,7 @@ projects:
         - {
             icon: "plug",
             title: "Plug-and-play",
-            text: "Points at Pithead, or any RandomX Stratum pool. No wallet in the miner; workers don't need Tor.",
+            text: "Points at Pithead with no wallet in the miner, or at any RandomX Stratum pool with your wallet as the pool user. Workers pointed at Pithead don't need Tor.",
           }
         - {
             icon: "shield",
@@ -224,7 +235,7 @@ roadmap:
         n: "1.2",
         name: "Operator alerts",
         status: "Shipped",
-        text: "A Telegram bot pings the moment a node or worker drops — and when it recovers — plus a Healthchecks dead-man's switch for the one failure a monitor on the box can never report: the box itself going dark.",
+        text: "An opt-in Telegram bot pings the moment a node or worker drops — and when it recovers — plus a Healthchecks dead-man's switch for the one failure a monitor on the box can never report: the box itself going dark.",
       }
     - {
         n: "1.3+",
@@ -258,8 +269,8 @@ roadmap:
     - {
         n: "02",
         status: "In review",
-        name: "Updates that can't brick the box",
-        text: "Signed A/B updates: a new image lands on the spare slot, boots once, and commits only after the stack passes a health check. A slot that won't boot reverts on its own at the next power cycle.",
+        name: "Updates that fall back on failure",
+        text: "Signed A/B updates: a new image lands on the spare slot, boots once, and commits only after the stack passes a health check. If the new version fails to boot or the stack does not come up, the machine restarts itself once onto the previous version. The fallback covers the system image only: it does not undo a one-way data migration or recover a failing disk.",
       }
     - {
         n: "03",
@@ -290,7 +301,7 @@ ethos:
   items:
     - {
         title: "Privacy is the default, not a setting",
-        text: "Inbound rides Tor hidden services — no port forwarding, your home IP never shown to a peer — RPC stays localhost-bound, and all runtime egress routes over Tor by default. The opt-in clearnet exceptions are documented in the privacy guide.",
+        text: "Inbound rides Tor hidden services — no port forwarding, your home IP not advertised to inbound peers — RPC stays localhost-bound, and all runtime egress routes over Tor by default. The opt-in clearnet exceptions are documented in the privacy guide.",
       }
     - {
         title: "Least privilege, everywhere",
@@ -324,10 +335,11 @@ faq:
   items:
     - q: "How do I mine Monero privately at home?"
       a: >-
-        Run the P2Pool Starter Stack. One command stands up a private Monero full node, P2Pool, and a
-        single mining endpoint behind Tor — your home IP is never advertised to an inbound peer and you
-        never forward a port. Point any XMRig rig (or a RigForge worker) at it and you're mining straight
-        to your own wallet, no account and no custodian.
+        Run the P2Pool Starter Stack. One guided command stands up a private Monero full node, P2Pool,
+        and a single mining endpoint with Tor-first networking — your home IP is not advertised to
+        inbound peers and you don't forward a port. Once the chains finish their first sync, point any
+        XMRig rig (or a RigForge worker) at it and you're mining straight to your own wallet, no account
+        and no custodian. Use a dedicated mining wallet: P2Pool payout addresses are public.
       link: "https://github.com/p2pool-starter-stack/pithead"
       link_label: "Start with Pithead"
 
@@ -335,8 +347,9 @@ faq:
       a: >-
         No. Pithead runs Monero, Tari, and P2Pool as Tor hidden services, so inbound peers reach you over
         an onion address and your router stays shut. RPC is bound to localhost, and all runtime egress
-        routes over Tor by default behind a fail-closed firewall — the few opt-in exceptions, like a
-        faster clearnet initial sync, are mapped in the privacy guide.
+        routes over Tor by default behind a fail-closed firewall. The privacy guide maps the exceptions:
+        opt-ins like a faster clearnet initial sync, a remote node you choose (dialled directly), and
+        the one-time install downloads, which reveal your IP to the download host.
 
     - q: "What is P2Pool, and why mine to it instead of a centralized pool?"
       a: >-
@@ -347,9 +360,11 @@ faq:
     - q: "Is solo Monero mining worth it, or should I use a pool?"
       a: >-
         Solo mining only pays when you personally find a block, which can take a very long time on home
-        hardware. P2Pool gives you steady, proportional payouts with no operator and no fee — the best of
-        both. Pithead runs P2Pool for you and can also grab XMRvsBeast bonus rounds to lift your effective
-        yield.
+        hardware. P2Pool pays you whenever the pool finds a block while you hold shares in its PPLNS
+        window, with no operator and no fee. Payouts still swing with mining luck, so quiet stretches
+        are normal; the default mini sidechain lets a typical home rig find shares far more often than
+        main, and nano suits a single low-power rig. Pithead runs P2Pool for you and can also enter the
+        XMRvsBeast raffle, which picks winners at random.
 
     - q: "What hardware do I need to mine Monero?"
       a: >-
@@ -361,22 +376,28 @@ faq:
 
     - q: "What is Monero + Tari merge mining?"
       a: >-
-        Merge mining lets one unit of proof-of-work secure two chains at once. Through P2Pool, every hash
-        you submit mines Monero and merge-mines Tari at the same time — a second payout for zero extra
-        power, hardware, or configuration.
+        Merge mining lets one unit of proof-of-work secure two chains at once. Through P2Pool, your
+        P2Pool hashrate also merge-mines Tari on the same work, at no cost to the Monero side. It does
+        need a Tari base node — run on this host, with its own RAM and disk, or one you run on another
+        machine — and a Tari payout address. Tari is merge-mined solo, so its reward lands all at once
+        when your hashrate finds a Tari block, and that can be months apart.
 
     - q: "Is it free? Are there any pool fees or a dev fee?"
       a: >-
-        Yes — the stack is free and MIT-licensed, and P2Pool charges no pool fee. RigForge keeps XMRig's
+        Yes — Pithead and RigForge are free and MIT-licensed (the upstream software they run, such as
+        P2Pool and XMRig, keeps its own licenses), and P2Pool charges no pool fee. RigForge keeps XMRig's
         standard 1% dev fee — that funds the upstream XMRig project, not us — and makes it one line to turn
-        off. The only optional extra is a Monero donation address if a stack saves you time.
+        off before setup (an already-built worker needs a rebuild to lower it). Electricity and hardware are your own running costs; the dashboard can estimate profit after
+        power. The only optional extra is a Monero donation address if a stack saves you time.
 
     - q: "Can I point my existing XMRig miners at it?"
       a: >-
         Yes. Any XMRig or RandomX rig connects to the stack's single endpoint at host:3333 — no wallet in
-        the miner, no per-rig pool config. For maximum hashrate, RigForge provisions a kernel-tuned XMRig
-        worker in one command and measured +3.5% hashrate and +7.6% efficiency on a Ryzen 7800X3D versus
-        stock.
+        the miner, no per-rig pool config. Plain XMRig rigs mine and show up on the dashboard; retuning a
+        rig from the dashboard needs RigForge with its opt-in control port. For more hashrate,
+        RigForge provisions a kernel-tuned XMRig worker in one command; its published benchmark of a
+        single Ryzen 7800X3D, mining live, measured +3.5% hashrate and +7.6% efficiency versus stock.
+        Results vary by hardware.
       link: "https://github.com/p2pool-starter-stack/rigforge"
       link_label: "Provision with RigForge"
 
@@ -384,12 +405,15 @@ faq:
       a: >-
         XMRvsBeast runs bonus raffle rounds for miners who lend a little hashrate. Pithead's algorithmic
         optimizer watches XvB and shifts just enough hashrate to hold your tier — donating the minimum —
-        then hands every spare cycle back to your own P2Pool payouts. No manual tuning, no over-donating.
+        and routes the rest to your own P2Pool payouts. The raffle picks winners at random, so donating
+        above a tier's threshold earns nothing extra.
 
 cta:
   eyebrow: "// start here"
   title: "Stand up the whole operation."
-  sub: "A private, multi-rig, merge-mining stack — running before your coffee gets cold."
+  sub: >-
+    A private, multi-rig, merge-mining stack. After setup, the first chain sync takes a few hours to a
+    day or more, depending on your hardware, disk, and network.
   primary: { label: "Start with Pithead", href: "https://github.com/p2pool-starter-stack/pithead" }
   secondary:
     {
