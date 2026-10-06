@@ -19,9 +19,9 @@ hero:
           p: true,
           text: "curl -fsSL https://github.com/p2pool-starter-stack/pithead/releases/latest/download/pithead.tar.gz | tar xz",
         }
-      - { p: true, text: "cd pithead && cp config.minimal.json config.json" }
+      - { p: true, text: "cd pithead && cp config.minimal.json config.json   # then set your payout addresses" }
       - { p: true, text: "./pithead setup" }
-      - { p: false, text: "✓ Tor provisioned · kernel tuned · stack live over HTTPS" }
+      - { p: false, text: "✓ Tor provisioned · kernel tuned · stack up over HTTPS · chains sync before mining starts" }
   cta_primary: { label: "Get Pithead", href: "https://github.com/p2pool-starter-stack/pithead" }
   cta_secondary: { label: "View on GitHub", href: "https://github.com/p2pool-starter-stack" }
   meta: "MIT-licensed · built in the open · this site makes zero third-party requests"
@@ -38,7 +38,7 @@ beliefs:
     - belief: "Own the whole stack."
       text: >-
         Your node, your P2Pool, your dashboard — the entire operation runs on hardware you control, from
-        config you can read. Nothing rented, nothing hosted for you, nothing anyone else can switch off.
+        config you can read. Nothing rented and nothing hosted for you.
     - belief: "Tor-first, by default."
       text: >-
         Monero, Tari, and P2Pool run as Tor hidden services by default — no port forwarding, no home IP
@@ -112,7 +112,7 @@ projects:
         - {
             icon: "brain",
             title: "Algorithmic yield optimization",
-            text: "Watches the XMRvsBeast raffle and shifts hashrate to grab bonus rounds — donating only the minimum to hold your tier, then handing every spare cycle back to your own P2Pool payouts.",
+            text: "Watches the XMRvsBeast raffle and shifts hashrate to hold your tier — donating only the minimum needed and routing the rest to your own P2Pool payouts.",
           }
         - {
             icon: "plug",
@@ -162,7 +162,7 @@ projects:
       blurb: >-
         Turn an Ubuntu/Debian machine into a tuned mining worker (macOS support is deprecated
         and untested). RigForge compiles
-        stock, commit-pinned XMRig from source, applies CPU- and kernel-level tuning for maximum
+        stock, commit-pinned XMRig from source, applies CPU- and kernel-level tuning aimed at
         RandomX hashrate, and runs it as a managed service — then points it at your stack, or any
         RandomX pool.
       features:
@@ -229,7 +229,7 @@ roadmap:
         n: "1.2",
         name: "Operator alerts",
         status: "Shipped",
-        text: "A Telegram bot pings the moment a node or worker drops — and when it recovers — plus a Healthchecks dead-man's switch for the one failure a monitor on the box can never report: the box itself going dark.",
+        text: "An opt-in Telegram bot pings the moment a node or worker drops — and when it recovers — plus a Healthchecks dead-man's switch for the one failure a monitor on the box can never report: the box itself going dark.",
       }
     - {
         n: "1.3+",
@@ -264,7 +264,7 @@ roadmap:
         n: "02",
         status: "In review",
         name: "Updates that fall back on failure",
-        text: "Signed A/B updates: a new image lands on the spare slot, boots once, and commits only after the stack passes a health check. A slot that won't boot reverts on its own at the next power cycle. The fallback covers the system image only: it does not undo a one-way data migration or recover a failing disk.",
+        text: "Signed A/B updates: a new image lands on the spare slot, boots once, and commits only after the stack passes a health check. If the new version fails to boot or the stack does not come up, the machine restarts itself once onto the previous version. The fallback covers the system image only: it does not undo a one-way data migration or recover a failing disk.",
       }
     - {
         n: "03",
@@ -388,9 +388,10 @@ faq:
       a: >-
         Yes. Any XMRig or RandomX rig connects to the stack's single endpoint at host:3333 — no wallet in
         the miner, no per-rig pool config. Plain XMRig rigs mine and show up on the dashboard; retuning a
-        rig from the dashboard needs RigForge with its opt-in control port. For maximum hashrate,
-        RigForge provisions a kernel-tuned XMRig worker in one command and measured +3.5% hashrate and
-        +7.6% efficiency on a Ryzen 7800X3D versus stock.
+        rig from the dashboard needs RigForge with its opt-in control port. For more hashrate,
+        RigForge provisions a kernel-tuned XMRig worker in one command; its published benchmark of a
+        single Ryzen 7800X3D, mining live, measured +3.5% hashrate and +7.6% efficiency versus stock.
+        Results vary by hardware.
       link: "https://github.com/p2pool-starter-stack/rigforge"
       link_label: "Provision with RigForge"
 
@@ -398,7 +399,8 @@ faq:
       a: >-
         XMRvsBeast runs bonus raffle rounds for miners who lend a little hashrate. Pithead's algorithmic
         optimizer watches XvB and shifts just enough hashrate to hold your tier — donating the minimum —
-        then hands every spare cycle back to your own P2Pool payouts. No manual tuning, no over-donating.
+        and routes the rest to your own P2Pool payouts. The raffle picks winners at random, so donating
+        above a tier's threshold earns nothing extra.
 
 cta:
   eyebrow: "// start here"
