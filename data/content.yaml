@@ -381,7 +381,7 @@ faq:
         Yes — Pithead and RigForge are free and MIT-licensed (the upstream software they run, such as
         P2Pool and XMRig, keeps its own licenses), and P2Pool charges no pool fee. RigForge keeps XMRig's
         standard 1% dev fee — that funds the upstream XMRig project, not us — and makes it one line to turn
-        off. Electricity and hardware are your own running costs; the dashboard can estimate profit after
+        off before setup (an already-built worker needs a rebuild to lower it). Electricity and hardware are your own running costs; the dashboard can estimate profit after
         power. The only optional extra is a Monero donation address if a stack saves you time.
 
     - q: "Can I point my existing XMRig miners at it?"
