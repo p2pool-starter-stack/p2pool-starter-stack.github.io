@@ -36,10 +36,10 @@
   "name" "Pithead"
   "applicationCategory" "DeveloperApplication"
   "applicationSubCategory" "Monero mining software"
-  "operatingSystem" "Ubuntu Server 24.04 LTS"
+  "operatingSystem" "Pithead OS (x86-64 UEFI) / Ubuntu Server 24.04 LTS (Docker Compose)"
   "url" "https://github.com/p2pool-starter-stack/pithead"
   "codeRepository" "https://github.com/p2pool-starter-stack/pithead"
-  "description" "A containerized stack for private Monero mining at home, set up with one guided command: a private Monero full node, decentralized zero-fee P2Pool, Tari merge mining, and a single mining endpoint, with Tor-first networking by default and a live dashboard. No custodian, no pool fee."
+  "description" (index hugo.Data.content.projects.items 0).blurb
   "license" "https://opensource.org/licenses/MIT"
   "isAccessibleForFree" true
   "offers" $offerFree

@@ -10,26 +10,43 @@ hero:
   title_tail: ""
   sub: >-
     We built this to mine Monero on a stack you <strong>own outright</strong> — no operator taking a
-    cut, no custodian, and Tor-first networking by default. Now setup is <strong>one guided
-    command</strong>, so anyone can.
+    cut, no custodian, and Tor-first networking by default. Choose <strong>Pithead OS</strong>
+    for a dedicated machine with browser setup, or <strong>Docker Compose</strong> on your own Linux host.
   command:
-    title: "you@home: ~/pithead"
+    title: "you@home: ~"
     lines:
       - {
           p: true,
           text: "curl -fsSL https://github.com/p2pool-starter-stack/pithead/releases/latest/download/pithead.tar.gz | tar xz",
         }
-      - {
-          p: true,
-          text: "cd pithead && cp config.minimal.json config.json   # then set your payout addresses",
-        }
+      - { p: true, text: "cd pithead" }
       - { p: true, text: "./pithead setup" }
-      - {
-          p: false,
-          text: "✓ Tor provisioned · kernel tuned · stack up over HTTPS · chains sync before mining starts",
-        }
-  cta_primary: { label: "Get Pithead", href: "https://github.com/p2pool-starter-stack/pithead" }
-  cta_secondary: { label: "View on GitHub", href: "https://github.com/p2pool-starter-stack" }
+  appliance:
+    label: "Pithead OS"
+    title: "Flash. Boot. Make it yours."
+    text: "A complete operating system for a machine dedicated to your mine. No Linux setup needed."
+    steps:
+      - "Download the image and verify its checksum."
+      - "Flash a USB stick and boot your machine."
+      - "Pick a role and finish setup in your browser."
+    download_label: "Download image"
+    checksum_label: "SHA-256 checksum"
+    note: "x86-64 · UEFI · wired ethernet. Installing erases the selected disk."
+  diy:
+    label: "Docker Compose"
+    title: "Your Linux. Your stack."
+    text: "Keep the host you manage. One guided setup brings up the same stack and dashboard."
+    note: "Ubuntu Server 24.04 · have your Monero payout address ready."
+  cta_primary:
+    {
+      label: "Flash & setup guide",
+      href: "https://github.com/p2pool-starter-stack/pithead/blob/main/docs/appliance.md",
+    }
+  cta_secondary:
+    {
+      label: "DIY setup guide",
+      href: "https://github.com/p2pool-starter-stack/pithead/blob/main/docs/getting-started.md",
+    }
   meta: "MIT-licensed · built in the open · this site makes zero third-party requests"
 
 # "Why we built this" — the belief, stated first (Simon Sinek: start with why).
@@ -53,35 +70,36 @@ beliefs:
         downloads. P2Pool payout addresses are public, so mine to a dedicated wallet.
     - belief: "Keep what you earn."
       text: >-
-        P2Pool pays block rewards straight to your wallet — no pool operator, no cut, no account. Even
-        the miner's dev fee is just XMRig's standard 1%, and one line sets it to zero.
+        P2Pool pays block rewards straight to your wallet — no pool operator, no cut, no account.
+        XMRig has a separate 1% developer donation by default.
     - belief: "And it shouldn't take an expert."
       text: >-
-        One guided command provisions the node, Tor, payouts, RandomX kernel tuning, and the dashboard —
-        sensible defaults, a preview before anything disruptive, and a doctor when something looks off.
-        The chains then sync, which takes a few hours to a day or more, before mining starts. The
-        fiddly part is done; you keep the control.
+        A browser wizard on Pithead OS, or a guided command on your Linux host, sets up the node,
+        Tor, payouts, RandomX tuning, and dashboard. Start with Monero; Tari and the XvB raffle are
+        optional and off for new installs. Preview disruptive changes and use Service Diagnostics
+        when something looks off. The first Monero sync can take hours to days; you keep the control.
 
 # Mono stat band under the hero.
 stats:
-  - { value: "11", label: "services, one compose file" }
-  - { value: "2", label: "chains, merge-mined" }
-  - { value: "1", label: "command to set up" }
+  - { value: "2", label: "install paths: OS or Compose" }
+  - { value: "1", label: "dashboard for the operation" }
+  - { value: "0%", label: "P2Pool fee" }
   - { value: ":3333", label: "one endpoint for every rig" }
   - { value: "0", label: "ports forwarded" }
 
 # "How they fit together" flow.
 flow:
   eyebrow: "// how it fits together"
-  title: "An orchestrator, and the miners that feed it."
+  title: "One coordinator. One machine or a fleet."
   sub: >-
-    Point as many RigForge miners as you like at a single Pithead. The stack handles
-    the nodes, privacy, payouts, and optimization — the miners just hash.
+    Pithead coordinates the nodes, privacy, payouts, and dashboard. Mine on the same machine,
+    connect separate RigForge or XMRig workers, or do both. Add optional Tari merge mining and
+    the XvB raffle when you want them.
   nodes:
-    miners: { kicker: "RigForge", title: "Miners", note: "many machines · just hash" }
-    orch: { kicker: "Pithead", title: "Orchestrator", note: "nodes · privacy · payouts · :3333" }
-    chains: { kicker: "Monero + Tari", title: "Merge-mined", note: "over Tor" }
-  side: { kicker: "XMRvsBeast", title: "Bonus rounds", note: "algorithmic hashrate split" }
+    miners: { kicker: "RigForge / XMRig", title: "Miners", note: "local CPU or separate rigs" }
+    orch: { kicker: "Pithead", title: "Coordinator", note: "nodes · privacy · payouts · :3333" }
+    chains: { kicker: "Monero", title: "+ optional Tari", note: "mining over Tor" }
+  side: { kicker: "XMRvsBeast", title: "Bonus rounds", note: "optional raffle · off by default" }
 
 # The projects. Pithead is the star (featured: true).
 projects:
@@ -96,15 +114,21 @@ projects:
       mark: "pithead"
       accent: "orange"
       name: "Pithead"
-      role: "the orchestrator"
-      tagline: "Private Monero + Tari merge mining, the whole stack, in one command."
+      role: "the coordinator"
+      tagline: "Private Monero mining. The whole stack, on your hardware."
       blurb: >-
-        A containerized stack that runs a private Monero full node, P2Pool, Tari merge
-        mining, a single mining endpoint, and a live dashboard, with Tor-first networking
-        by default — set up with one guided command.
+        Your Monero node, zero-fee P2Pool, one endpoint for every miner, and a live dashboard,
+        with Tor-first networking and optional Tari merge mining. Install Pithead OS on a
+        dedicated machine, or use Docker Compose on a Linux host you manage — the same stack,
+        dashboard, and configuration either way.
       image: "img/dashboard.png"
       image_alt: "The Pithead dashboard — live hashrate, P2Pool/XvB split, XvB tier, and per-worker stats"
       features:
+        - {
+            icon: "stack",
+            title: "Your choice of setup",
+            text: "Boot Pithead OS from USB and configure it in your browser: a coordinator, a coordinator that also mines, or a mining rig. Prefer your own OS? The Docker Compose setup guides you through the same stack.",
+          }
         - {
             icon: "onion",
             title: "Private by default",
@@ -112,13 +136,13 @@ projects:
           }
         - {
             icon: "pick",
-            title: "Monero + Tari, merge-mined",
-            text: "Your P2Pool hashrate mines Monero on zero-fee P2Pool and merge-mines Tari on the same work, at no cost to the Monero side. Tari needs its own node (on this host, using its own RAM and disk, or one you run elsewhere) and a Tari payout address, and it is mined solo: a Tari reward lands all at once, and blocks can be months apart.",
+            title: "Monero + optional Tari",
+            text: "Mine Monero on zero-fee P2Pool. Opt into Tari merge mining (beta, off for new installs) to reuse that work on a second chain. Tari needs a local or remote node and payout address; rewards are solo and can be months apart. Monero-only operation needs neither a Tari node nor a Tari address.",
           }
         - {
             icon: "brain",
-            title: "Algorithmic yield optimization",
-            text: "Watches the XMRvsBeast raffle and shifts hashrate to hold your tier — donating only the minimum needed and routing the rest to your own P2Pool payouts.",
+            title: "Optional XvB raffle",
+            text: "The optimizer watches XMRvsBeast and shifts hashrate to hold your tier — donating only what it needs and routing the rest to your P2Pool payouts. The raffle is beta and off for new installs; wins depend on luck.",
           }
         - {
             icon: "plug",
@@ -128,27 +152,37 @@ projects:
         - {
             icon: "chart",
             title: "A dashboard worth leaving open",
-            text: "Live hashrate, the P2Pool/XvB split shading in real time, per-worker stats — and persistent trends: blocks found, pool luck, reject rates, and expected-vs-confirmed earnings after power costs.",
+            text: "Live hashrate, per-worker stats, the optional P2Pool/XvB split, and persistent trends: blocks found, pool luck, reject rates, and earnings estimates after power costs. View-only payout confirmation is an optional beta feature.",
           }
         - {
             icon: "gear",
             title: "Control from the browser",
-            text: "Opt in to edit any setting from a guided form, retune RigForge rigs that enable their own token-authenticated control port, with versioned history, and one-click upgrade when a release lands — every change host-validated behind a login, with a full audit log.",
+            text: "Enable dashboard control to edit settings behind a login, preview changes, and confirm disruptive actions by typing APPLY. Payout changes also check the new address. See each rig's running configuration; optional remote rig control is beta and requires adoption and a control token.",
+          }
+        - {
+            icon: "chart",
+            title: "Diagnostics without a shell",
+            text: "Service Diagnostics brings health checks and redacted service logs into the dashboard. The XMR Network card tracks sync and peers, and alerts flag node trouble or a missing Tor-only firewall. CLI users have doctor and redacted support bundles too.",
           }
         - {
             icon: "bolt",
-            title: "An operator bot on call",
+            title: "Alerts when you need them",
             text: "Opt-in Telegram alerts the moment a node or worker drops — and when it recovers — plus a daily digest, read-only status commands, and a Healthchecks dead-man's switch for the failure the box can't report itself.",
           }
         - {
             icon: "stack",
             title: "Encrypted backups",
-            text: "One command writes config, secrets, Tor onion keys, and the dashboard's history to an AES-256 archive — and restore brings the box back on new hardware with the same onion address.",
+            text: "Save settings, secrets, Tor keys, and dashboard history in an encrypted archive from the dashboard or CLI. Restore through the appliance setup wizard on replacement hardware. Keep the backup and passphrase safe, away from the machine.",
+          }
+        - {
+            icon: "gear",
+            title: "Updates with a way back",
+            text: "Pithead OS verifies a signed update on its spare system copy. If the new system does not boot healthy, it falls back to the previous copy. Data lives separately; system rollback does not undo database migrations. Compose installs have signed stack upgrades too.",
           }
         - {
             icon: "shield",
             title: "Hardened out of the box",
-            text: "Non-root containers, read-only filesystems, SHA256-verified pinned binaries, digest-pinned images, scoped Docker-socket proxies — and every release cosign-signed end to end.",
+            text: "Non-root containers, read-only filesystems, SHA256-verified pinned binaries, digest-pinned images, and scoped Docker-socket proxies. Stack bundles and images are cosign-signed; appliance updates are signed and verified before installation.",
           }
       links:
         - {
@@ -213,17 +247,16 @@ projects:
             href: "https://github.com/p2pool-starter-stack/rigforge/blob/main/docs/benchmarks.md",
           }
 
-# High-level roadmap. The waves group pithead's twenty post-1.0 releases into the themes the
-# original roadmap promised (all shipped); the road ahead is the v2 appliance work in review on
-# the develop branch. No dates; versions only.
+# Shipped capabilities, grouped by the foundation and the appliance experience.
+# Keep the existing timeline layout; future work belongs in the project's issue tracker.
 roadmap:
   eyebrow: "// the roadmap"
-  title: "Twenty releases later: the road to the appliance era."
+  title: "Built for the whole life of a mine."
   sub: >-
-    Built in the open, issue by issue — no vaporware, no roadmap-for-sale. Everything the v1 roadmap
-    promised has shipped, release by release, on real hardware. And what's next is already written:
-    Pithead OS, a flashable appliance, in review on the develop branch right now.
-  waves_label: "shipped · v1.0 → v1.20, theme by theme"
+    From private networking and fleet management to installing, updating, and recovering your
+    machine — these capabilities have shipped. Follow the repositories for current work, release
+    notes, and known issues.
+  waves_label: "the foundation · shipped"
   waves:
     - {
         n: "1.1",
@@ -241,13 +274,13 @@ roadmap:
         n: "1.3+",
         name: "Trends & insight",
         status: "Shipped",
-        text: "Persistent time-series telemetry, a pool cadence & luck panel, and earnings calculators — later grown into cards that check every estimate against what the view-only wallets actually confirmed, after power costs.",
+        text: "Persistent telemetry, pool cadence and luck, and earnings estimates after power costs. Optional view-only payout confirmation is beta; Tari confirmation has a known reporting limitation documented in the release notes.",
       }
     - {
         n: "1.4+",
         name: "Control & fleet",
         status: "Shipped",
-        text: "Config editing and one-click signed upgrades from the dashboard, per-rig inspect and retune with versioned history, stratum TLS with per-rig pinning, and warm failover to a backup stack.",
+        text: "Configuration previews and confirmations, signed upgrades, per-rig inspection, stratum TLS with per-rig pinning, and warm failover to a backup stack. Remote rig control is an optional beta feature.",
       }
     - {
         n: "1.12+",
@@ -256,38 +289,38 @@ roadmap:
         text: "Co-host behind an existing reverse proxy, let one stack's synced nodes serve others, and point the stack at a remote Monero or Tari node instead of running your own.",
       }
   ship:
-    title: "v1.20 — the whole operation, signed and live."
-    text: "Twenty releases cut in the open — including two withdrawn and re-cut with the root cause documented in the changelog. Every bundle is now cosign-signed end to end, and the release pipeline refuses to cut an unsigned build."
-  beyond_label: "the road ahead · Pithead OS, in review on develop"
+    title: "A stack you can verify."
+    text: "Pinned components, signed releases, and a public changelog. Updates are checked against the release key before installation, and each release documents its components and known issues."
+  beyond_label: "the appliance experience · shipped"
   releases:
     - {
         n: "01",
-        status: "In review",
+        status: "Shipped",
         name: "Flash a drive, boot a mine",
-        text: "Pithead OS: a bootable appliance image with a read-only root, A/B system partitions, and an immutable Podman/Quadlet runtime — and everything that matters on one persistent data partition.",
+        text: "Write Pithead OS to USB, boot a dedicated machine, and finish setup in a browser. Pick a coordinator, add mining on its own CPU, or make it a rig for an existing coordinator. Installing to an internal disk erases that disk; the wizard asks you to confirm.",
       }
     - {
         n: "02",
-        status: "In review",
+        status: "Shipped",
         name: "Updates that fall back on failure",
-        text: "Signed A/B updates: a new image lands on the spare slot, boots once, and commits only after the stack passes a health check. If the new version fails to boot or the stack does not come up, the machine restarts itself once onto the previous version. The fallback covers the system image only: it does not undo a one-way data migration or recover a failing disk.",
+        text: "Update from the dashboard or CLI. The signed image is installed on the spare system copy and checked at boot. Chain services start after that copy commits, so a one-way database migration cannot begin on a system still awaiting its boot decision. Rollback covers the system, not data migrations or a failing disk.",
       }
     - {
         n: "03",
-        status: "In review",
-        name: "First boot without a manual",
-        text: "A brand-new box serves a first-boot wizard, the installer moves the running image onto an internal disk — keep or wipe your data — and a factory reset returns it to day one.",
+        status: "Shipped",
+        name: "Back up, restore, start again",
+        text: "Export an encrypted backup and restore it from the setup wizard. Config reset keeps synced chains, wallets, and Tor keys while you re-enter settings; factory reset erases the data area. A damaged data partition is repaired before reinitialization is considered.",
       }
     - {
         n: "04",
-        status: "In review",
-        name: "Headless, to the last resort",
-        text: "Drop a config file on a USB stick and a headless box configures itself — no keyboard, no network step. The same channel doubles as the recovery path of last resort.",
+        status: "Shipped",
+        name: "Headless setup and recovery",
+        text: "Put a setup token or configuration file on the USB stick to prepare a machine without a monitor. A configuration stick can also recover settings when you cannot sign in. Internal-disk installation still requires you to choose and confirm the disk to erase.",
       }
   ship_beyond:
-    tag: "v2"
-    name: "The appliance era"
-    text: "All of it is real code today — hundreds of commits on develop carrying the image, updater, installer, wizard, and factory reset — under adversarial review and a hardware test battery before the first image is cut. Watch it land in the open."
+    tag: "LIVE"
+    name: "Tuned for a dedicated machine."
+    text: "Pithead OS sizes HugePages to installed RAM, selects the performance CPU governor, and uses a hardware watchdog where available. The Tor-only egress firewall fails closed for IPv6 too. Prefer managing the host yourself? Docker Compose remains a supported install path."
   donate:
     eyebrow: "// fuel the roadmap"
     title: "Built in the open. Funded by the people who run it."
@@ -321,7 +354,7 @@ ethos:
       }
     - {
         title: "Respect the operator's time",
-        text: "Sensible auto-tuning, one-command setup, and docs treated as a first-class deliverable.",
+        text: "Sensible auto-tuning, guided setup in a browser or terminal, and docs treated as a first-class deliverable.",
       }
 
 # FAQ — answers the real questions people (and AI assistants) ask about mining
@@ -335,11 +368,12 @@ faq:
   items:
     - q: "How do I mine Monero privately at home?"
       a: >-
-        Run the P2Pool Starter Stack. One guided command stands up a private Monero full node, P2Pool,
-        and a single mining endpoint with Tor-first networking — your home IP is not advertised to
-        inbound peers and you don't forward a port. Once the chains finish their first sync, point any
-        XMRig rig (or a RigForge worker) at it and you're mining straight to your own wallet, no account
-        and no custodian. Use a dedicated mining wallet: P2Pool payout addresses are public.
+        Install Pithead OS on a dedicated machine, or use the Docker Compose setup on your Linux host.
+        Both run your Monero node, P2Pool, and a single mining endpoint with Tor-first networking.
+        Your home IP is not advertised to inbound peers and you don't forward a port. After Monero
+        syncs, use the appliance's built-in miner or connect XMRig or RigForge workers. Payouts go
+        straight to your wallet, with no account or custodian. Use a dedicated mining wallet:
+        P2Pool payout addresses are public.
       link: "https://github.com/p2pool-starter-stack/pithead"
       link_label: "Start with Pithead"
 
@@ -368,15 +402,28 @@ faq:
 
     - q: "What hardware do I need to mine Monero?"
       a: >-
-        For the stack host: Ubuntu Server 24.04, 16 GB+ RAM, and an SSD (~330 GB pruned / ~530 GB full
-        to start — the chains grow, so 2–4 TB is set-and-forget). Mining itself is CPU-bound — Monero's
-        RandomX runs on any modern AMD or Intel CPU,
-        and chips with large L3 cache (Ryzen X3D, EPYC) shine. RigForge auto-detects your CPU and tunes the
-        miner for you.
+        For a coordinator with both chains local, allow 16 GB+ RAM and a 600 GB+ SSD, with more room
+        for growth. Pithead OS needs a dedicated x86-64 UEFI machine, wired ethernet, and a 16 GB+
+        USB stick; installation erases the selected disk. DIY targets Ubuntu Server 24.04.
+        Remote nodes or Monero-only operation reduce storage needs. A worker-only rig holds no
+        chains: size it for CPU mining, not the coordinator's storage budget.
+      link: "https://github.com/p2pool-starter-stack/pithead/blob/main/docs/hardware.md"
+      link_label: "Compare hardware requirements"
+
+    - q: "Should I choose Pithead OS or Docker Compose?"
+      a: >-
+        Choose Pithead OS for a machine dedicated to mining: boot from USB, install, and use the
+        browser wizard without setting up Linux yourself. It can coordinate your mine, also mine on
+        its own CPU, or act as a worker for another Pithead. Choose Docker Compose if you already
+        manage a Linux host and want to keep that OS. Both coordinator installs share the same stack,
+        dashboard, and configuration; Compose users maintain their own host OS.
+      link: "https://github.com/p2pool-starter-stack/pithead/blob/main/docs/appliance.md"
+      link_label: "Read the appliance setup guide"
 
     - q: "What is Monero + Tari merge mining?"
       a: >-
-        Merge mining lets one unit of proof-of-work secure two chains at once. Through P2Pool, your
+        Tari merge mining is beta and off for new installs. Enable it to let one unit of proof-of-work
+        secure two chains at once. Through P2Pool, your
         P2Pool hashrate also merge-mines Tari on the same work, at no cost to the Monero side. It does
         need a Tari base node — run on this host, with its own RAM and disk, or one you run on another
         machine — and a Tari payout address. Tari is merge-mined solo, so its reward lands all at once
@@ -394,7 +441,7 @@ faq:
       a: >-
         Yes. Any XMRig or RandomX rig connects to the stack's single endpoint at host:3333 — no wallet in
         the miner, no per-rig pool config. Plain XMRig rigs mine and show up on the dashboard; retuning a
-        rig from the dashboard needs RigForge with its opt-in control port. For more hashrate,
+        rig from the dashboard is beta and needs RigForge control, a token, and adoption. For more hashrate,
         RigForge provisions a kernel-tuned XMRig worker in one command; its published benchmark of a
         single Ryzen 7800X3D, mining live, measured +3.5% hashrate and +7.6% efficiency versus stock.
         Results vary by hardware.
@@ -403,20 +450,46 @@ faq:
 
     - q: "What is XMRvsBeast (XvB), and how does the optimizer use it?"
       a: >-
-        XMRvsBeast runs bonus raffle rounds for miners who lend a little hashrate. Pithead's algorithmic
+        The XvB raffle is beta and off for new installs. XMRvsBeast runs bonus rounds for miners who
+        lend a little hashrate. Pithead's algorithmic
         optimizer watches XvB and shifts just enough hashrate to hold your tier — donating the minimum —
         and routes the rest to your own P2Pool payouts. The raffle picks winners at random, so donating
         above a tier's threshold earns nothing extra.
+
+    - q: "How do updates, backups, and recovery work?"
+      a: >-
+        Pithead OS installs signed updates onto a spare system copy and falls back if the new system
+        fails its boot checks. This protects the system image, not one-way database migrations.
+        Save encrypted backups and their passphrases off the machine, then restore from the setup
+        wizard if hardware needs replacing. Config reset keeps synced chains and identity data;
+        factory reset erases the data area. Check release notes for known issues before updating.
+      link: "https://github.com/p2pool-starter-stack/pithead/releases/latest"
+      link_label: "Release notes and known issues"
+
+    - q: "Can I upgrade an existing 1.x install?"
+      a: >-
+        Upgrades from 1.x are best-effort and may need a fresh setup. Back up with chains first and
+        read the migration guide: Tari's database migration is one-way, needs extra disk space,
+        and must finish without a restart. Upgrades retain your choices but migrate legacy settings
+        and remove retired SSH and Telegram control options. The Monero-only and raffle-off defaults
+        apply to new installs.
+      link: "https://github.com/p2pool-starter-stack/pithead/releases/tag/v2.0.0#upgrading-from-120x"
+      link_label: "Read the 1.x upgrade instructions"
 
 cta:
   eyebrow: "// start here"
   title: "Stand up the whole operation."
   sub: >-
-    A private, multi-rig, merge-mining stack. After setup, the first chain sync takes a few hours to a
-    day or more, depending on your hardware, disk, and network.
-  primary: { label: "Start with Pithead", href: "https://github.com/p2pool-starter-stack/pithead" }
+    Pick a dedicated appliance or your own Linux host. Start with Monero, connect your miners,
+    and add optional features when you need them. Allow hours to days for the first sync,
+    depending on your hardware, disk, and network.
+  primary:
+    {
+      label: "Install Pithead OS",
+      href: "https://github.com/p2pool-starter-stack/pithead/blob/main/docs/appliance.md",
+    }
   secondary:
     {
-      label: "Provision miners with RigForge",
-      href: "https://github.com/p2pool-starter-stack/rigforge",
+      label: "Use Docker Compose",
+      href: "https://github.com/p2pool-starter-stack/pithead/blob/main/docs/getting-started.md",
     }
