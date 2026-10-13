@@ -70,8 +70,8 @@ beliefs:
         downloads. P2Pool payout addresses are public, so mine to a dedicated wallet.
     - belief: "Keep what you earn."
       text: >-
-        P2Pool pays block rewards straight to your wallet — no pool operator, no cut, no account. Even
-        the miner's dev fee is just XMRig's standard 1%, and one line sets it to zero.
+        P2Pool pays block rewards straight to your wallet — no pool operator, no cut, no account.
+        XMRig has a separate 1% developer donation by default.
     - belief: "And it shouldn't take an expert."
       text: >-
         A browser wizard on Pithead OS, or a guided command on your Linux host, sets up the node,
