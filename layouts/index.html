@@ -13,17 +13,36 @@
     <h1 class="hero-title rise">{{ $c.hero.title_lead }} <span class="accent glow-text">{{ $c.hero.title_accent }}</span> {{ $c.hero.title_tail }}</h1>
     <p class="hero-sub rise">{{ $c.hero.sub | safeHTML }}</p>
 
-    <div class="terminal rise" aria-label="One-command setup">
+    <div class="install-routes rise">
+      <article class="install-route appliance-route" aria-labelledby="appliance-title">
+        <p class="eyebrow mono">{{ partial "icon.html" "stack" }} {{ $c.hero.appliance.label }}</p>
+        <h2 id="appliance-title">{{ $c.hero.appliance.title }}</h2>
+        <p class="route-description">{{ $c.hero.appliance.text }}</p>
+        <ol class="route-steps">
+          {{ range $c.hero.appliance.steps }}<li>{{ . }}</li>{{ end }}
+        </ol>
+        {{ $version := hugo.Data.releases.pithead }}
+        {{ $imageURL := printf "https://github.com/p2pool-starter-stack/pithead/releases/download/%s/pithead-os-%s.img.xz" $version $version }}
+        <div class="route-actions">
+          <a class="btn btn-primary" href="{{ $imageURL }}">{{ $c.hero.appliance.download_label }} <span aria-hidden="true">↓</span></a>
+          <p class="route-links"><a href="{{ $imageURL }}.sha256">{{ $c.hero.appliance.checksum_label }}</a><span aria-hidden="true"> · </span><a href="{{ $c.hero.cta_primary.href }}" target="_blank" rel="noopener">{{ $c.hero.cta_primary.label }} ↗</a></p>
+        </div>
+        <p class="route-note">{{ $c.hero.appliance.note }}</p>
+      </article>
+      <article class="install-route diy-route" aria-labelledby="diy-title">
+        <p class="eyebrow mono">{{ partial "icon.html" "terminal" }} {{ $c.hero.diy.label }}</p>
+        <h2 id="diy-title">{{ $c.hero.diy.title }}</h2>
+        <p class="route-description">{{ $c.hero.diy.text }}</p>
+        <div class="terminal" aria-label="Docker Compose setup commands">
       <div class="term-bar"><span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span><span class="term-title mono">{{ $c.hero.command.title }}</span></div>
       <pre class="term-body mono"><code>{{- range $c.hero.command.lines -}}
 {{ if .p }}<span class="term-prompt">$</span> <span class="term-cmd">{{ .text }}</span>{{ else }}<span class="term-ok">{{ .text }}</span>{{ end }}
 {{ end -}}
 <span class="cursor">█</span></code></pre>
-    </div>
-
-    <div class="hero-cta rise">
-      <a class="btn btn-primary" href="{{ $c.hero.cta_primary.href }}" target="_blank" rel="noopener">{{ $c.hero.cta_primary.label }} <span aria-hidden="true">→</span></a>
-      <a class="btn btn-ghost" href="{{ $c.hero.cta_secondary.href }}" target="_blank" rel="noopener">{{ $c.hero.cta_secondary.label }}</a>
+        </div>
+        <div class="route-actions"><a class="btn btn-ghost" href="{{ $c.hero.cta_secondary.href }}" target="_blank" rel="noopener">{{ $c.hero.cta_secondary.label }} <span aria-hidden="true">↗</span></a></div>
+        <p class="route-note">{{ $c.hero.diy.note }}</p>
+      </article>
     </div>
     <p class="hero-meta mono rise">{{ $c.hero.meta }}</p>
   </div>
@@ -97,7 +116,7 @@
         <span class="flow-note">{{ $c.flow.nodes.orch.note }}</span>
         <span class="flow-branch mono">↘ {{ $c.flow.side.kicker }} · {{ $c.flow.side.note }}</span>
       </div>
-      <div class="flow-arrow"><span class="flow-arrow-label mono">merge-mine · over Tor</span></div>
+      <div class="flow-arrow"><span class="flow-arrow-label mono">mine · over Tor</span></div>
       <div class="flow-node node-chains">
         <span class="flow-mark"><span class="chain-pair">{{ partial "icon.html" "monero" }}{{ partial "icon.html" "tari" }}</span></span>
         <span class="flow-kicker mono">{{ $c.flow.nodes.chains.kicker }}</span>

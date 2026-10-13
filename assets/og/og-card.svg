@@ -39,9 +39,9 @@
   <text x="90" y="392" font-size="86" font-weight="800" letter-spacing="-1"><tspan fill="#F26822">operation</tspan><tspan fill="#f4f6fb" dx="34">yourself.</tspan></text>
 
   <!-- subline -->
-  <text x="92" y="468" font-size="29" fill="#9aa4b2" font-weight="500">Private, self-hosted Monero + Tari mining — an orchestrator</text>
-  <text x="92" y="506" font-size="29" fill="#9aa4b2" font-weight="500">and the miners that feed it, in one command.</text>
+  <text x="92" y="468" font-size="29" fill="#9aa4b2" font-weight="500">Private Monero mining. One machine or a fleet.</text>
+  <text x="92" y="506" font-size="29" fill="#9aa4b2" font-weight="500">Pithead OS or Docker Compose — your choice.</text>
 
   <!-- tag rail -->
-  <text x="92" y="582" font-size="22" fill="#F26822" font-weight="600" font-family="'Menlo', ui-monospace, monospace" letter-spacing="0.5"><tspan>MIT</tspan><tspan fill="#5b6675" dx="14">·</tspan><tspan fill="#F26822" dx="14">0% dev fee</tspan><tspan fill="#5b6675" dx="14">·</tspan><tspan fill="#F26822" dx="14">Tor-first</tspan><tspan fill="#5b6675" dx="14">·</tspan><tspan fill="#F26822" dx="14">no premine, no token</tspan><tspan fill="#5b6675" dx="14">·</tspan><tspan fill="#F26822" dx="14">built in the open</tspan></text>
+  <text x="92" y="582" font-size="22" fill="#F26822" font-weight="600" font-family="'Menlo', ui-monospace, monospace" letter-spacing="0.5"><tspan>MIT</tspan><tspan fill="#5b6675" dx="14">·</tspan><tspan fill="#F26822" dx="14">0% pool fee</tspan><tspan fill="#5b6675" dx="14">·</tspan><tspan fill="#F26822" dx="14">Tor-first</tspan><tspan fill="#5b6675" dx="14">·</tspan><tspan fill="#F26822" dx="14">no premine, no token</tspan><tspan fill="#5b6675" dx="14">·</tspan><tspan fill="#F26822" dx="14">built in the open</tspan></text>
 </svg>

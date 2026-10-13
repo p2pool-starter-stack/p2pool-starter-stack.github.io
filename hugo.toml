@@ -13,8 +13,8 @@ disableKinds = ["taxonomy", "term", "rss"]
 
 [params]
   brand = "P2Pool Starter Stack"
-  tagline = "Private, self-hosted Monero + Tari mining — the whole operation."
-  description = "The P2Pool Starter Stack is open-source infrastructure for private, optimized Monero + Tari mining on hardware you own. No custodians. Tor-first networking by default. No hand-tuning."
+  tagline = "Private, self-hosted Monero mining — the whole operation."
+  description = "Private Monero mining on hardware you own: Pithead OS or Docker Compose, zero-fee P2Pool, Tor-first networking, a live dashboard, and optional Tari merge mining."
   org = "p2pool-starter-stack"
   orgURL = "https://github.com/p2pool-starter-stack"
   donateXMR = "486aGn4qhH1MkaASjnEWMDN7stD1SVtPF5fvihmjffeBE5ACL1u1jU95KxiqmoiaPZMexi4R4W11MLXut66XWVVF8wjAE5R"

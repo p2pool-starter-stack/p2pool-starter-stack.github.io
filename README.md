@@ -48,6 +48,14 @@ flakes on a third-party outage — run `htmltest` with `CheckExternal: true` to 
 All landing-page copy is in **[`data/content.yaml`](data/content.yaml)** — edit text there, not in the
 templates. The page is assembled by [`layouts/index.html`](layouts/index.html) from that data.
 
+The landing page introduces both Pithead OS and Docker Compose for new users, alongside mining,
+privacy, dashboard, fleet, and recovery features. Keep optional/beta defaults explicit and link
+to the install guides and release notes for detailed requirements and known issues. The roadmap
+summarizes shipped capabilities; release numbers stay in the project badges. Pithead's JSON-LD
+description reuses its project blurb so search metadata stays aligned with the visible copy.
+The hero pairs an appliance image/checksum download with the DIY setup terminal. Image URLs use
+the Pithead tag in `data/releases.json`; keep the versioned release asset names in sync if they change.
+
 ```text
 data/content.yaml        ← all copy (hero, stats, projects, roadmap, ethos, FAQ, CTA)
 data/releases.json       ← latest pithead / rigforge release tags (version badges)

@@ -12,3 +12,6 @@
 # OS / editor cruft
 .DS_Store
 *.swp
+
+# Local codebase map
+graphify-out/

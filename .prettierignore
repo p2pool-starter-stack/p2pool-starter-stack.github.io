@@ -2,6 +2,7 @@
 public/
 resources/
 node_modules/
+graphify-out/
 
 # Hugo Go-template layouts — Prettier's HTML parser mangles {{ }} syntax, and the
 # whitespace between inline elements here is visually significant. Governed by .editorconfig.
