@@ -1,4 +1,4 @@
-baseURL = "https://p2pool-starter-stack.github.io/"
+baseURL = "https://pitheadmining.com/"
 defaultContentLanguage = "en"
 title = "P2Pool Starter Stack"
 # robots.txt is served from static/robots.txt (hand-written: welcomes AI/search
@@ -17,6 +17,7 @@ disableKinds = ["taxonomy", "term", "rss"]
   description = "Private Monero mining on hardware you own: Pithead OS or Docker Compose, zero-fee P2Pool, Tor-first networking, a live dashboard, and optional Tari merge mining."
   org = "p2pool-starter-stack"
   orgURL = "https://github.com/p2pool-starter-stack"
+  bugEmail = "bugs@pitheadmining.com"
   donateXMR = "486aGn4qhH1MkaASjnEWMDN7stD1SVtPF5fvihmjffeBE5ACL1u1jU95KxiqmoiaPZMexi4R4W11MLXut66XWVVF8wjAE5R"
 
 [markup.goldmark.renderer]

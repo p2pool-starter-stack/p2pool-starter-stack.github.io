@@ -112,7 +112,7 @@ Refresh the committed fallback locally with `python3 scripts/refresh-releases.py
 ## Deploy
 
 This repo is the org's GitHub Pages site (`p2pool-starter-stack.github.io`), served at
-<https://p2pool-starter-stack.github.io/>.
+<https://pitheadmining.com/>. The old `github.io` address redirects there.
 
 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builds with Hugo and publishes on every
 push to `main`. In the repo's **Settings → Pages**, set **Source: GitHub Actions** once and it deploys

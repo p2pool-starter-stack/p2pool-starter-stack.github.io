@@ -12,7 +12,7 @@ A clear description of the bug — what you expected to see, and what actually h
 
 ## Where?
 
-- **Page / URL:** (e.g. <https://p2pool-starter-stack.github.io/#roadmap>)
+- **Page / URL:** (e.g. <https://pitheadmining.com/#roadmap>)
 - **Section or element:** (hero, project card, FAQ, footer, …)
 
 ## Steps to reproduce
