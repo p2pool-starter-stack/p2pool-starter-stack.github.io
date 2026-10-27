@@ -40,4 +40,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://p2pool-starter-stack.github.io/sitemap.xml
+Sitemap: https://pitheadmining.com/sitemap.xml

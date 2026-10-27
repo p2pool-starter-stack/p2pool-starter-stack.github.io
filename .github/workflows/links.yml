@@ -34,13 +34,13 @@ jobs:
         env:
           HUGO_ENVIRONMENT: production
           TZ: UTC
-        run: hugo --gc --minify --baseURL "https://p2pool-starter-stack.github.io/"
+        run: hugo --gc --minify --baseURL "https://pitheadmining.com/"
       - name: Check external links (lychee)
         id: lychee
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
         with:
           # Internal links are htmltest's job — exclude our own domain so this only audits outbound.
-          args: "--no-progress --exclude p2pool-starter-stack.github.io ./public"
+          args: "--no-progress --exclude pitheadmining.com --exclude p2pool-starter-stack.github.io ./public"
           output: ./lychee/out.md
           fail: false # never fail the workflow; report via the tracking issue instead
       - name: Open or update tracking issue

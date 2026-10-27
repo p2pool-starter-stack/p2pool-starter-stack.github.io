@@ -24,6 +24,9 @@
     <nav class="footer-col" aria-label="Project">
       <h3>The org</h3>
       <a href="{{ .Site.Params.orgURL }}" target="_blank" rel="noopener">GitHub organization</a>
+      {{- with .Site.Params.bugEmail }}
+      <a href="mailto:{{ . }}?subject=Bug%20report">Report a bug: {{ . }}</a>
+      {{- end }}
       <a href="https://www.getmonero.org/" target="_blank" rel="noopener">Monero</a>
       <a href="https://www.tari.com/" target="_blank" rel="noopener">Tari</a>
     </nav>

@@ -1,7 +1,7 @@
 # Security Policy
 
 This repository is the source for the P2Pool Starter Stack website
-(<https://p2pool-starter-stack.github.io/>) — a static [Hugo](https://gohugo.io/) site with no
+(<https://pitheadmining.com/>) — a static [Hugo](https://gohugo.io/) site with no
 backend and no third-party requests at runtime (system fonts only; nothing phones home). The main
 security surface is the **build and deploy pipeline** rather than the served pages, but we still
 want to hear about anything that could mislead visitors or compromise the site.
