@@ -248,15 +248,13 @@ projects:
             href: "https://github.com/p2pool-starter-stack/rigforge/blob/main/docs/benchmarks.md",
           }
 
-# Shipped capabilities, grouped by the foundation and the appliance experience.
-# Keep the existing timeline layout; future work belongs in the project's issue tracker.
 roadmap:
   eyebrow: "// the roadmap"
   title: "Built for the whole life of a mine."
   sub: >-
     From private networking and fleet management to installing, updating, and recovering your
-    machine — these capabilities have shipped. Follow the repositories for current work, release
-    notes, and known issues.
+    machine — these capabilities have shipped. Next comes a steadier 2.0, then simpler setup.
+    Planned work follows the repositories' open milestones and can change; no dates are promised.
   waves_label: "the foundation · shipped"
   waves:
     - {
@@ -328,10 +326,48 @@ roadmap:
     tag: "LIVE"
     name: "Tuned for a dedicated machine."
     text: "Pithead OS sizes HugePages to installed RAM, selects the performance CPU governor, and uses a hardware watchdog where available. The Tor-only egress firewall fails closed for IPv6 too. Prefer managing the host yourself? Docker Compose remains a supported install path."
+  planned_label: "the road ahead · planned"
+  planned:
+    - {
+        n: "2.0.5",
+        status: "In progress",
+        name: "Updates that behave as documented",
+        text: "Bug fixes so updating, rolling back, and resetting work the way the guides say; remote OS updates for USB-stick RigForge rigs from the dashboard, using RigForge 1.20's update API; and a combined batch of fixes.",
+      }
+    - {
+        n: "2.0.6",
+        status: "Planned",
+        name: "A steadier 2.0, through 2.0.8",
+        text: "More 2.0.x releases to steady the app before the 2.1 redesign: the remaining bugs, Reboot and Shutdown buttons on the appliance, keeping a rig's record and history when you replace its USB stick, Upgrade rig and Remove rig from the dashboard, and Ubuntu Server 26.04 for Docker Compose installs beside 24.04.",
+      }
+    - {
+        n: "2.1",
+        status: "Planned",
+        name: "Simpler setup, refreshed dashboard",
+        text: "Once 2.0 is stable: one Performance / Balance / Privacy profile, three setup questions, automatic defaults with fewer settings to manage, and a leaner four-page dashboard: Overview, Machines, Earnings, and Settings.",
+      }
+    - {
+        n: "2.1.1",
+        status: "Planned",
+        name: "Follow-through, through 2.1.3",
+        text: "The command line and dashboard backend move to Go in small pieces, each made the default only after it matches today's behavior; more automated tests; and an optional headless mode that serves the dashboard's data as an API without the UI, plus a view of the machine's own health.",
+      }
+    - {
+        n: "2.2",
+        status: "Planned",
+        name: "Sharing and fleet tools",
+        text: "Restricted, revocable access to your Monero node for your wallets, configuration jobs across many rigs, more P2Pool options such as subaddress payouts, per-rig history and trend flags, automatic Tari node recovery, and an opt-in onion stratum for rigs on other networks.",
+      }
+    - {
+        n: "RF",
+        status: "Planned",
+        name: "RigForge: update API, then Rust",
+        text: "1.19.1 collects fixes, and 1.20.0 brings the token-authenticated update API that Pithead 2.0.5 uses. From 1.21.0, RigForge's scripts and APIs move to Rust in stages, and each port is adopted only where it measures faster. After the port: mining that yields when a shared host gets busy, and thermal holds that pause XMRig instead of stopping it.",
+      }
   donate:
     eyebrow: "// fuel the roadmap"
     title: "Built in the open. Funded by the people who run it."
-    text: "Every wave above shipped by hand, issue by issue, out in the open. If this stack saved you time, fuel the next wave."
+    text: "Every shipped wave above landed by hand, issue by issue, out in the open. If this stack saved you time, fuel the next one."
     note: "Monero, naturally — straight to the people who build it."
 
 # "How we build" — the ethos.

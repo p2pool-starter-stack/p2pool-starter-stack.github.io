@@ -235,6 +235,25 @@
       {{ end }}
     </div>
 
+    {{ with $c.roadmap.planned }}
+    <p class="waves-label mono reveal beyond-label">{{ $c.roadmap.planned_label }}</p>
+    <div class="waves">
+      <span class="waves-rail" aria-hidden="true"></span>
+      {{ range . }}
+      <div class="wave reveal">
+        <div class="wave-node"><span class="mono">{{ .n }}</span></div>
+        <div class="wave-body">
+          <div class="wave-head">
+            <h3 class="wave-name">{{ .name }}</h3>
+            <span class="status-pill mono">{{ .status }}</span>
+          </div>
+          <p class="wave-text">{{ .text }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+
     {{ with $c.roadmap.donate }}
     <div class="donate-band reveal">
       <p class="eyebrow mono">{{ .eyebrow }}</p>

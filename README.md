@@ -51,7 +51,8 @@ templates. The page is assembled by [`layouts/index.html`](layouts/index.html) f
 The landing page introduces both Pithead OS and Docker Compose for new users, alongside mining,
 privacy, dashboard, fleet, and recovery features. Keep optional/beta defaults explicit and link
 to the install guides and release notes for detailed requirements and known issues. The roadmap
-summarizes shipped capabilities; release numbers stay in the project badges. Pithead's JSON-LD
+summarizes shipped capabilities, then the planned work from the repos' open milestones (no dates;
+"planned", never promised). Current release numbers stay in the project badges. Pithead's JSON-LD
 description reuses its project blurb so search metadata stays aligned with the visible copy.
 The hero pairs an appliance image/checksum download with the DIY setup terminal. Image URLs use
 the Pithead tag in `data/releases.json`; keep the versioned release asset names in sync if they change.
