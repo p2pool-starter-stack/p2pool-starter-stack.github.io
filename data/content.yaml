@@ -31,7 +31,7 @@ hero:
       - "Pick a role and finish setup in your browser."
     download_label: "Download image"
     checksum_label: "SHA-256 checksum"
-    note: "x86-64 · UEFI · wired ethernet. Installing erases the selected disk."
+    note: "x86-64 · UEFI with Secure Boot off · wired ethernet. Installing erases the selected disk."
   diy:
     label: "Docker Compose"
     title: "Your Linux. Your stack."
@@ -71,7 +71,8 @@ beliefs:
     - belief: "Keep what you earn."
       text: >-
         P2Pool pays block rewards straight to your wallet — no pool operator, no cut, no account.
-        XMRig has a separate 1% developer donation by default.
+        Stock XMRig donates 1% to its developers by default; RigForge workers and the Pithead OS
+        miner default that donation to zero.
     - belief: "And it shouldn't take an expert."
       text: >-
         A browser wizard on Pithead OS, or a guided command on your Linux host, sets up the node,
@@ -147,7 +148,7 @@ projects:
         - {
             icon: "plug",
             title: "One endpoint for every rig",
-            text: "All your miners point at a single address — no wallet in the miner, no per-rig pool config. The stack routes the hashrate.",
+            text: "All your miners point at a single address — no wallet in the miner, no per-rig pool config. The stack routes the hashrate, and when your node cannot make valid work it stops serving it so rigs fail over to their backup pool.",
           }
         - {
             icon: "chart",
@@ -162,7 +163,7 @@ projects:
         - {
             icon: "chart",
             title: "Diagnostics without a shell",
-            text: "Service Diagnostics brings health checks and redacted service logs into the dashboard. The XMR Network card tracks sync and peers, and alerts flag node trouble or a missing Tor-only firewall. CLI users have doctor and redacted support bundles too.",
+            text: "Service Diagnostics brings health checks, redacted service logs, and per-service and Restart all buttons into the dashboard, and you can download a support bundle for a chosen time window. The XMR Network card tracks sync and peers, and alerts flag node trouble or a missing Tor-only firewall. CLI users have doctor and redacted support bundles too.",
           }
         - {
             icon: "bolt",
@@ -213,8 +214,8 @@ projects:
           }
         - {
             icon: "chart",
-            title: "Measurably faster, and cooler",
-            text: "+3.5% hashrate and +7.6% efficiency on a Ryzen 7800X3D, measured live against stock XMRig — and +6.6% on a 48-core EPYC.",
+            title: "Benchmarks that check the hash",
+            text: "The bench command checks XMRig's computed hash as well as its speed, and offline tuning rejects any candidate that fails verification. How much tuning helps depends on your hardware and starting setup.",
           }
         - {
             icon: "cpu",
@@ -229,12 +230,12 @@ projects:
         - {
             icon: "plug",
             title: "Plug-and-play",
-            text: "Points at Pithead with no wallet in the miner, or at any RandomX Stratum pool with your wallet as the pool user. Workers pointed at Pithead don't need Tor.",
+            text: "Points at Pithead with no wallet in the miner, or at any RandomX Stratum pool with your wallet as the pool user, including .onion pools through your own Tor. Workers pointed at Pithead don't need Tor.",
           }
         - {
             icon: "shield",
             title: "Stock XMRig, verified",
-            text: "Compiles upstream XMRig pinned to a verified commit — no custom binary, no curl | bash. Keeps XMRig's standard 1% dev fee (it funds the upstream XMRig project, not us); one line turns it off. Idempotent re-runs.",
+            text: "Compiles upstream XMRig pinned to a verified commit — no custom binary, no curl | bash. XMRig's developer donation is opt-in and defaults to 0%; on a standalone install, one line sets it if you want to fund the upstream XMRig project. Idempotent re-runs.",
           }
       links:
         - {
@@ -247,15 +248,13 @@ projects:
             href: "https://github.com/p2pool-starter-stack/rigforge/blob/main/docs/benchmarks.md",
           }
 
-# Shipped capabilities, grouped by the foundation and the appliance experience.
-# Keep the existing timeline layout; future work belongs in the project's issue tracker.
 roadmap:
   eyebrow: "// the roadmap"
   title: "Built for the whole life of a mine."
   sub: >-
     From private networking and fleet management to installing, updating, and recovering your
-    machine — these capabilities have shipped. Follow the repositories for current work, release
-    notes, and known issues.
+    machine — these capabilities have shipped. Next comes a steadier 2.0, then simpler setup.
+    Planned work follows the repositories' open milestones and can change; no dates are promised.
   waves_label: "the foundation · shipped"
   waves:
     - {
@@ -317,14 +316,58 @@ roadmap:
         name: "Headless setup and recovery",
         text: "Put a setup token or configuration file on the USB stick to prepare a machine without a monitor. A configuration stick can also recover settings when you cannot sign in. Internal-disk installation still requires you to choose and confirm the disk to erase.",
       }
+    - {
+        n: "05",
+        status: "Shipped",
+        name: "Steadier with every patch",
+        text: "Four patch releases since 2.0.0 added a sign-in page with Remember me, per-service and Restart all buttons in Service Diagnostics, support bundles for a chosen time window, rig failover to a backup pool when the node cannot make valid work, and payout history kept per wallet. Each release lists its known issues.",
+      }
   ship_beyond:
     tag: "LIVE"
     name: "Tuned for a dedicated machine."
     text: "Pithead OS sizes HugePages to installed RAM, selects the performance CPU governor, and uses a hardware watchdog where available. The Tor-only egress firewall fails closed for IPv6 too. Prefer managing the host yourself? Docker Compose remains a supported install path."
+  planned_label: "the road ahead · planned"
+  planned:
+    - {
+        n: "2.0.5",
+        status: "In progress",
+        name: "Updates that behave as documented",
+        text: "Bug fixes so updating, rolling back, and resetting work the way the guides say; remote OS updates for USB-stick RigForge rigs from the dashboard, using RigForge 1.20's update API; and a combined batch of fixes.",
+      }
+    - {
+        n: "2.0.6",
+        status: "Planned",
+        name: "A steadier 2.0, through 2.0.8",
+        text: "More 2.0.x releases to steady the app before the 2.1 redesign: the remaining bugs, Reboot and Shutdown buttons on the appliance, keeping a rig's record and history when you replace its USB stick, Upgrade rig and Remove rig from the dashboard, and Ubuntu Server 26.04 for Docker Compose installs beside 24.04.",
+      }
+    - {
+        n: "2.1",
+        status: "Planned",
+        name: "Simpler setup, refreshed dashboard",
+        text: "Once 2.0 is stable: one Performance / Balance / Privacy profile, three setup questions, automatic defaults with fewer settings to manage, and a leaner four-page dashboard: Overview, Machines, Earnings, and Settings.",
+      }
+    - {
+        n: "2.1.1",
+        status: "Planned",
+        name: "Follow-through, through 2.1.3",
+        text: "The command line and dashboard backend move to Go in small pieces, each made the default only after it matches today's behavior; more automated tests; and an optional headless mode that serves the dashboard's data as an API without the UI, plus a view of the machine's own health.",
+      }
+    - {
+        n: "2.2",
+        status: "Planned",
+        name: "Sharing and fleet tools",
+        text: "Restricted, revocable access to your Monero node for your wallets, configuration jobs across many rigs, more P2Pool options such as subaddress payouts, per-rig history and trend flags, automatic Tari node recovery, and an opt-in onion stratum for rigs on other networks.",
+      }
+    - {
+        n: "RF",
+        status: "Planned",
+        name: "RigForge: update API, then Rust",
+        text: "1.19.1 collects fixes, and 1.20.0 brings the token-authenticated update API that Pithead 2.0.5 uses. From 1.21.0, RigForge's scripts and APIs move to Rust in stages, and each port is adopted only where it measures faster. After the port: mining that yields when a shared host gets busy, and thermal holds that pause XMRig instead of stopping it.",
+      }
   donate:
     eyebrow: "// fuel the roadmap"
     title: "Built in the open. Funded by the people who run it."
-    text: "Every wave above shipped by hand, issue by issue, out in the open. If this stack saved you time, fuel the next wave."
+    text: "Every shipped wave above landed by hand, issue by issue, out in the open. If this stack saved you time, fuel the next one."
     note: "Monero, naturally — straight to the people who build it."
 
 # "How we build" — the ethos.
@@ -403,8 +446,8 @@ faq:
     - q: "What hardware do I need to mine Monero?"
       a: >-
         For a coordinator with both chains local, allow 16 GB+ RAM and a 600 GB+ SSD, with more room
-        for growth. Pithead OS needs a dedicated x86-64 UEFI machine, wired ethernet, and a 16 GB+
-        USB stick; installation erases the selected disk. DIY targets Ubuntu Server 24.04.
+        for growth. Pithead OS needs a dedicated x86-64 UEFI machine with Secure Boot off, wired
+        ethernet, and a 16 GB+ USB stick; installation erases the selected disk. DIY targets Ubuntu Server 24.04.
         Remote nodes or Monero-only operation reduce storage needs. A worker-only rig holds no
         chains: size it for CPU mining, not the coordinator's storage budget.
       link: "https://github.com/p2pool-starter-stack/pithead/blob/main/docs/hardware.md"
@@ -432,19 +475,20 @@ faq:
     - q: "Is it free? Are there any pool fees or a dev fee?"
       a: >-
         Yes — Pithead and RigForge are free and MIT-licensed (the upstream software they run, such as
-        P2Pool and XMRig, keeps its own licenses), and P2Pool charges no pool fee. RigForge keeps XMRig's
-        standard 1% dev fee — that funds the upstream XMRig project, not us — and makes it one line to turn
-        off before setup (an already-built worker needs a rebuild to lower it). Electricity and hardware are your own running costs; the dashboard can estimate profit after
-        power. The only optional extra is a Monero donation address if a stack saves you time.
+        P2Pool and XMRig, keeps its own licenses), and P2Pool charges no pool fee. XMRig's developer
+        donation defaults to 0% on RigForge workers and the Pithead OS miner; on a standalone
+        RigForge worker, one config line sets a percentage if you want to fund the upstream XMRig
+        project, not us. Plain XMRig rigs you connect keep XMRig's own 1% default. Electricity and
+        hardware are your own running costs; the dashboard can estimate profit after power. The only
+        optional extra is a Monero donation address if a stack saves you time.
 
     - q: "Can I point my existing XMRig miners at it?"
       a: >-
         Yes. Any XMRig or RandomX rig connects to the stack's single endpoint at host:3333 — no wallet in
         the miner, no per-rig pool config. Plain XMRig rigs mine and show up on the dashboard; retuning a
-        rig from the dashboard is beta and needs RigForge control, a token, and adoption. For more hashrate,
-        RigForge provisions a kernel-tuned XMRig worker in one command; its published benchmark of a
-        single Ryzen 7800X3D, mining live, measured +3.5% hashrate and +7.6% efficiency versus stock.
-        Results vary by hardware.
+        rig from the dashboard is beta and needs RigForge control, a token, and adoption. RigForge
+        provisions a kernel-tuned XMRig worker in one command; how much the tuning helps depends on
+        your hardware and starting setup.
       link: "https://github.com/p2pool-starter-stack/rigforge"
       link_label: "Provision with RigForge"
 
